@@ -9,69 +9,69 @@ public class User {
 
     @Id
     @GeneratedValue
-    private Long instructor_id;
-    private String instructor_name;
-    private String instructor_username; 
-    private String instructor_email;
-    private char[] instructor_password;
-    private byte[] instructor_signature_data;
-    private byte[] instructor_profile_picture_data;
+    private Long id;
+    private String name;
+    private String username; 
+    private String email;
+    private char[] password;
+    private byte[] signature_data;
+    private byte[] profile_picture_data;
 
 
-
-  public Long getInstructor_id() {
-    return this.instructor_id;
+  public Long getId() {
+    return this.id;
   }
 
-  public void setInstructor_id(Long instructor_id) {
-    this.instructor_id = instructor_id;
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public String getInstructor_name() {
-    return this.instructor_name;
+  public String getName() {
+    return this.name;
   }
 
-  public void setInstructor_name(String instructor_name) {
-    this.instructor_name = instructor_name;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public String getInstructor_username() {
-    return this.instructor_username;
+  public String getUsername() {
+    return this.username;
   }
 
-  public void setInstructor_username(String instructor_username) {
-    this.instructor_username = instructor_username;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
-  public String getInstructor_email() {
-    return this.instructor_email;
+  public String getEmail() {
+    return this.email;
   }
 
-  public void setInstructor_email(String instructor_email) {
-    this.instructor_email = instructor_email;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
-  public char[] getInstructor_password() {
-    return this.instructor_password;
+  public char[] getPassword() {
+    return this.password;
   }
 
-  public void setInstructor_password(char[] instructor_password) {
-    this.instructor_password = instructor_password;
+  public void setPassword(char[] password) {
+    this.password = password;
   }
 
-  public byte[] getInstructor_signature_data() {
-    return this.instructor_signature_data;
+  public byte[] getSignature_data() {
+    return this.signature_data;
   }
 
-  public void setInstructor_signature_data(byte[] instructor_signature_data) {
-    this.instructor_signature_data = instructor_signature_data;
+  public void setSignature_data(byte[] signature_data) {
+    this.signature_data = signature_data;
   }
 
-  public byte[] getInstructor_profile_picture_data() {
-    return this.instructor_profile_picture_data;
+  public byte[] getProfile_picture_data() {
+    return this.profile_picture_data;
   }
 
-  public void setInstructor_profile_picture_data(byte[] instructor_profile_picture_data) {
-    this.instructor_profile_picture_data = instructor_profile_picture_data;
+  public void setProfile_picture_data(byte[] profile_picture_data) {
+    this.profile_picture_data = profile_picture_data;
   }
+
 }

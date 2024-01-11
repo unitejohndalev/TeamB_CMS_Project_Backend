@@ -5,8 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-
 public class Instructor {
+    
     @Id
     @GeneratedValue
     private Long instructor_id;
