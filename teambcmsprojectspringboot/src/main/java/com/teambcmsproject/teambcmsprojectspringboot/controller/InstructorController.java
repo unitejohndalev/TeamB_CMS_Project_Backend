@@ -21,6 +21,10 @@ public class InstructorController {
      
      @PostMapping("/instructor") //orginal user
     Instructor newInstructor(@RequestBody Instructor newInstructor){
+      System.out.println(newInstructor.getInstructor_first_name());
+      System.out.println(newInstructor.getInstructor_last_name());
+      System.out.println(newInstructor.getInstructor_username());
+      System.out.println(newInstructor.getInstructor_id());
       System.out.println(newInstructor.getInstructor_email());
     return instructorRepository.save(newInstructor);
   }

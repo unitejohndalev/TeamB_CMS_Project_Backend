@@ -10,13 +10,13 @@ public class Instructor {
     @Id
     @GeneratedValue
     private Long instructor_id;
-    private String instructor_name;
+    private String instructor_first_name;
+    private String instructor_last_name;
     private String instructor_username; 
     private String instructor_email;
     private char[] instructor_password;
     private byte[] instructor_signature_data;
     private byte[] instructor_profile_picture_data;
-
 
 
 
@@ -28,12 +28,20 @@ public class Instructor {
         this.instructor_id = instructor_id;
     }
 
-    public String getInstructor_name() {
-        return this.instructor_name;
+    public String getInstructor_first_name() {
+        return this.instructor_first_name;
     }
 
-    public void setInstructor_name(String instructor_name) {
-        this.instructor_name = instructor_name;
+    public void setInstructor_first_name(String instructor_first_name) {
+        this.instructor_first_name = instructor_first_name;
+    }
+
+    public String getInstructor_last_name() {
+        return this.instructor_last_name;
+    }
+
+    public void setInstructor_last_name(String instructor_last_name) {
+        this.instructor_last_name = instructor_last_name;
     }
 
     public String getInstructor_username() {
@@ -75,4 +83,6 @@ public class Instructor {
     public void setInstructor_profile_picture_data(byte[] instructor_profile_picture_data) {
         this.instructor_profile_picture_data = instructor_profile_picture_data;
     }
-}
+
+
+   }
