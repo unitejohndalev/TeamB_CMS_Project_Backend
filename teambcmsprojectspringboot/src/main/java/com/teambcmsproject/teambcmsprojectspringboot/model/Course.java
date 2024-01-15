@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+
 @Entity
 public class Course {
     @Id
@@ -15,6 +16,8 @@ public class Course {
     private String course_description; 
     private String course_start_date;
     private String course_end_date;
+    private String chapter_title;
+
 
     public Long getCourse_id() {
         return this.course_id;
@@ -48,7 +51,6 @@ public class Course {
         this.course_description = course_description;
     }
 
-
     public String getCourse_start_date() {
         return this.course_start_date;
     }
@@ -65,6 +67,14 @@ public class Course {
         this.course_end_date = course_end_date;
     }
 
+    public String getChapter_title() {
+        return this.chapter_title;
+    }
+
+    public void setChapter_title(String chapter_title) {
+        this.chapter_title = chapter_title;
+    }
+    
 
 }
 //january 13 2024
