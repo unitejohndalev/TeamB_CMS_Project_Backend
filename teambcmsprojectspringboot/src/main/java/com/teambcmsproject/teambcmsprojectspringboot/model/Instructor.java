@@ -17,6 +17,8 @@ public class Instructor {
     private char[] instructor_password;
     private byte[] instructor_signature_data;
     private byte[] instructor_profile_picture_data;
+    private String instructor_contact_number;
+
 
 
 
@@ -82,6 +84,14 @@ public class Instructor {
 
     public void setInstructor_profile_picture_data(byte[] instructor_profile_picture_data) {
         this.instructor_profile_picture_data = instructor_profile_picture_data;
+    }
+        
+    public String getInstructor_contact_number() {
+        return this.instructor_contact_number;
+    }
+
+    public void setInstructor_contact_number(String instructor_contact_number) {
+        this.instructor_contact_number = instructor_contact_number;
     }
 
 

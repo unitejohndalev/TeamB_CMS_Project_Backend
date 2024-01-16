@@ -6,12 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teambcmsproject.teambcmsprojectspringboot.exception.CourseNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
+
+
 
 
 @RestController
@@ -38,6 +43,34 @@ public class CourseController {
 
 
   }
+/*january 16 2024 updating course data and getcourse by id*/
+
+  //show by id 
+  @GetMapping("/getCourse/{course_id}")
+  Course getCourseById(@PathVariable Long course_id){
+      return courseRepository.findById(course_id)
+      .orElseThrow(() -> new CourseNotFoundException(course_id));
+  }
+ 
+
+  //edit data 
+  @PutMapping("/getCourse/{course_id}")
+  Course updateCourse(@RequestBody Course newCourse, @PathVariable Long course_id){
+      return  courseRepository.findById(course_id)
+      .map(course ->{
+        course.setCourse_title(newCourse.getCourse_title());
+        course.setCourse_description(newCourse.getCourse_description());
+        course.setCourse_start_date(newCourse.getCourse_start_date());
+        course.setCourse_end_date(newCourse.getCourse_end_date());
+        course.setChapter_title(newCourse.getChapter_title());
+        return courseRepository.save(course);
+        
+      }).orElseThrow(()-> new CourseNotFoundException(course_id));
+  }
+    /*january 16 2024 */
 
 }
+  
+    
+
 //january 13 2024

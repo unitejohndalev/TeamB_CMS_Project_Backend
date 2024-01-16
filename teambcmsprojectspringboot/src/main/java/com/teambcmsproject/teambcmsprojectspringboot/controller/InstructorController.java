@@ -6,14 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teambcmsproject.teambcmsprojectspringboot.exception.CourseNotFoundException;
+import com.teambcmsproject.teambcmsprojectspringboot.exception.InstructorNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Instructor;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.InstructorRepository;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PutMapping;
 
 
 
@@ -40,18 +42,33 @@ public class InstructorController {
 
 
   }
+/*january 16 2024 updating instructor data and getinstructor by id*/
 
- /*@GetMapping("/getInstructor/{id}")
-  public Instructor getInstructorById(@PathVariable Long instructor_id) {
+  //show by id 
+  @GetMapping("/getInstructor/{instructor_id}")
+  Instructor getInstructorById(@PathVariable Long instructor_id){
       return instructorRepository.findById(instructor_id)
-              .orElseThrow(() -> new UserNotfound());
+      .orElseThrow(() -> new CourseNotFoundException(instructor_id));
   }
-   */
-  @PutMapping("Instructor/{id}")
-    Instructor updateInstructor(@RequestBody Instructor newInstructor, @PathVariable Long instructor_id) {      
-      return instructorRepository.findById(instructor_id);
+ 
+
+  //edit data 
+  @PutMapping("/getInstructor/{instructor_id}")
+  Instructor updateInstructor(@RequestBody Instructor newInstructor, @PathVariable Long instructor_id){
+      return  instructorRepository.findById(instructor_id)
       .map(instructor ->{
-        instructor.set
-      })
+        instructor.setInstructor_first_name(newInstructor.getInstructor_first_name());
+        instructor.setInstructor_last_name(newInstructor.getInstructor_last_name());
+        instructor.setInstructor_username(newInstructor.getInstructor_username());
+        instructor.setInstructor_email(newInstructor.getInstructor_email());
+        instructor.setInstructor_password(newInstructor.getInstructor_password());
+        instructor.setInstructor_profile_picture_data(newInstructor.getInstructor_profile_picture_data());
+        instructor.setInstructor_signature_data(newInstructor.getInstructor_signature_data());
+        instructor.setInstructor_contact_number(newInstructor.getInstructor_contact_number());
+        return instructorRepository.save(instructor);
+        
+      }).orElseThrow(()-> new InstructorNotFoundException(instructor_id));
   }
+  /*january 16 2024 */
+ 
 }
