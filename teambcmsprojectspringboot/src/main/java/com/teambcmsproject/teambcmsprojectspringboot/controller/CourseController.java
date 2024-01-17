@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.teambcmsproject.teambcmsprojectspringboot.exception.TopicNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.exception.CourseNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
@@ -68,6 +70,15 @@ public class CourseController {
       }).orElseThrow(()-> new CourseNotFoundException(course_id));
   }
     /*january 16 2024 */
+   
+    @DeleteMapping("/getCourse/{course_id}")
+        String deleteCourse(@PathVariable Long course_id){
+            if(!courseRepository.existsById(course_id)){
+                throw new TopicNotFoundException(course_id);
+            }
+            courseRepository.deleteById( course_id);
+            return "Course with id "+course_id+" has been successfully deleted";
+        }
 
 }
   
