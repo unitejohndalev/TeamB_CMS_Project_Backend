@@ -81,11 +81,11 @@ public class CourseController {
             courseRepository.deleteById( course_id);
             return "Course with id "+course_id+" has been successfully deleted";
         }
-  @GetMapping("/getCourseByInstructorId/{instructor_id}")
-    Course getCourseByInstructorId(@PathVariable Long instructor_id){
-      return courseRepository.findById(instructor_id)
-      .orElseThrow(() -> new CourseNotFoundException(instructor_id));
-    }
+  // @GetMapping("/getCourseByInstructorId/{instructor_id}")
+  //   Course getCourseByInstructorId(@PathVariable Long instructor_id){
+  //     return courseRepository.findById(instructor_id)
+  //     .orElseThrow(() -> new CourseNotFoundException(instructor_id));
+  //   }
     
 
 }
