@@ -66,5 +66,6 @@ public class ChapterController {
         chapterRepository.deleteById(chapter_id);
         return "Chapter with id " + chapter_id + " has been successfully deleted";
     }
+    
 
 }

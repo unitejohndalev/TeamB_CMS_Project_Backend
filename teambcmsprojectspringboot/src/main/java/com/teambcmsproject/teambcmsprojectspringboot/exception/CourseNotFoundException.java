@@ -7,5 +7,7 @@ public class CourseNotFoundException extends RuntimeException {
         super("Could not found the course with id  " + course_id);
     }
 
+
+
 }
   /*january 16 2024 */

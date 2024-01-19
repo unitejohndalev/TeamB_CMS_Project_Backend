@@ -17,6 +17,8 @@ import com.teambcmsproject.teambcmsprojectspringboot.exception.TopicNotFoundExce
 import com.teambcmsproject.teambcmsprojectspringboot.exception.CourseNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -79,6 +81,12 @@ public class CourseController {
             courseRepository.deleteById( course_id);
             return "Course with id "+course_id+" has been successfully deleted";
         }
+  @GetMapping("/getCourseByInstructorId/{instructor_id}")
+    Course getCourseByInstructorId(@PathVariable Long instructor_id){
+      return courseRepository.findById(instructor_id)
+      .orElseThrow(() -> new CourseNotFoundException(instructor_id));
+    }
+    
 
 }
   

@@ -1,9 +1,15 @@
 //january 13 2024
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 
 @Entity
@@ -11,13 +17,22 @@ public class Course {
     @Id
     @GeneratedValue
     private Long course_id;
-    private int instructor_id;
+    private Long instructor_id;
     private String course_title;
     private String course_description; 
     private String course_start_date;
     private String course_end_date;
     private String chapter_title;
 
+    @ManyToMany
+    @JoinTable(
+        name="postChapter",
+        joinColumns = @JoinColumn(name = "fkcourse_id"),
+        inverseJoinColumns = @JoinColumn(name = "fkstudent_id")
+    )
+    private Set<Chapter>chapterAdded = new HashSet<>();
+
+   
 
     public Long getCourse_id() {
         return this.course_id;
@@ -27,11 +42,11 @@ public class Course {
         this.course_id = course_id;
     }
 
-    public int getInstructor_id() {
+    public Long getInstructor_id() {
         return this.instructor_id;
     }
 
-    public void setInstructor_id(int instructor_id) {
+    public void setInstructor_id(Long instructor_id) {
         this.instructor_id = instructor_id;
     }
 
@@ -75,6 +90,8 @@ public class Course {
         this.chapter_title = chapter_title;
     }
     
-
+    public Set<Chapter> getChapterAdded() {
+        return this.chapterAdded;
+    }
 }
 //january 13 2024
