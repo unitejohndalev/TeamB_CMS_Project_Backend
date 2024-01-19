@@ -1,8 +1,12 @@
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Chapter {
@@ -12,6 +16,10 @@ public class Chapter {
      private String chapter_title;
      private String chapter_date_created;
 
+     @ManyToMany (mappedBy = "chapterAdded")
+     private Set<Course> coureses = new HashSet<>();
+
+    
 
     public Long getChapter_id() {
         return this.chapter_id;
@@ -35,6 +43,10 @@ public class Chapter {
 
     public void setChapter_date_created(String chapter_date_created) {
         this.chapter_date_created = chapter_date_created;
+    }
+
+    public Set<Course> getCoureses() {
+        return this.coureses;
     }
 
 }

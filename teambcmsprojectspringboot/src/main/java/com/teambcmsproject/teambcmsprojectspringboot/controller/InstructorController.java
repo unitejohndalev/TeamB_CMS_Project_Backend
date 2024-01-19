@@ -80,5 +80,6 @@ public class InstructorController {
             instructorRepository.deleteById(instructor_id);
             return "Chapter with id "+instructor_id+" has been successfully deleted";
         }
+      
  
 }
