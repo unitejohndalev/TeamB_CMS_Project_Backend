@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.exception.ChapterNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
 
 
@@ -67,5 +68,4 @@ public class ChapterController {
         return "Chapter with id " + chapter_id + " has been successfully deleted";
     }
     
-
 }
