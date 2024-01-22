@@ -1,6 +1,7 @@
 package com.teambcmsproject.teambcmsprojectspringboot.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,19 +15,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.ChapterService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
+import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
+import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
 @RestController
 @CrossOrigin("http://localhost:5173")
 public class ChapterController {
     @Autowired
     private ChapterService chapterService;
+     
+    @Autowired
+    private ChapterRepository chapterRepository;
 
-    @PostMapping("/createChapter") // orginal user
+    @Autowired
+    private CourseRepository courseRepository;
+
+    //January 22 2024 modification for organize code and function calling
+
+    @PostMapping("/createChapter") 
     Chapter newChapter(@RequestBody Chapter newChapter) {
         return chapterService.saveChapter(newChapter);
     }
 
-    @GetMapping("/getChapter") // orginal users
+    @GetMapping("/getChapter") 
     List<Chapter> getAllChapter() {
         return chapterService.getAllChapter();
 
@@ -51,4 +63,15 @@ public class ChapterController {
         return chapterService.deleteChapter(chapter_id);
     }
 
+    // @PutMapping("getChapter/{chapter_id}/course/{course_id}"){
+    //    Chapter addChapterToCourse(
+    //         @PathVariable Long chapter_id,
+    //         @PathVariable Long course_id
+    //     ){
+    //         Optional<Chapter> chapter = chapterRepository.findById(course_id);
+    //         Optional<Course> course = courseRepository.findById(course_id);
+    //     }
+    // }
+
 }
+    //January 22 2024 modification for organize code and function calling

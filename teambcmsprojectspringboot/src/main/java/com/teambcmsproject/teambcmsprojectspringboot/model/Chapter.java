@@ -1,11 +1,14 @@
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
+
 import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -16,8 +19,14 @@ public class Chapter {
      private String chapter_title;
      private String chapter_date_created;
 
-    //  @ManyToMany (mappedBy = "chapterAdded")
-    //  private Set<Course> coureses = new HashSet<>();
+    //  @ManyToMany
+    //  @JoinTable(
+    //     name = "CourseCreated", //name of table wherein the 2 tables joined
+    //     joinColumns = @JoinColumn(name = "chapter_id"), //join columns defining what columns are gonna be joined inside the table *chapter_id is the first Column*
+    //     inverseJoinColumns = @JoinColumn (name = "course_id") //2nd column inside CreatedCourse table
+    //     )
+
+    // private Set<Course> courseAdded = new HashSet<>();
 
     
 
@@ -44,9 +53,10 @@ public class Chapter {
     public void setChapter_date_created(String chapter_date_created) {
         this.chapter_date_created = chapter_date_created;
     }
-
-    // public Set<Course> getCoureses() {
-    //     return this.coureses;
+    
+    // public Set<Course> getcourseAdded() {
+    //     return courseAdded;
     // }
+
 
 }

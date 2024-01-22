@@ -1,3 +1,5 @@
+//January 22 2024 adding service class for organize code and function calling
+
 package com.teambcmsproject.teambcmsprojectspringboot.Service;
 
 import java.util.List;
@@ -57,3 +59,4 @@ public class CourseService {
       }).orElseThrow(()-> new CourseNotFoundException(course_id));
   }
 }
+//January 22 2024 adding service class for organize code and function calling

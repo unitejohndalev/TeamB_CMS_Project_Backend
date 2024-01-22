@@ -1,3 +1,4 @@
+//January 22 2024 adding service class for organize code and function calling
 package com.teambcmsproject.teambcmsprojectspringboot.Service;
 
 import java.util.List;
@@ -10,11 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.teambcmsproject.teambcmsprojectspringboot.exception.ChapterNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
+import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
 @Service
 public class ChapterService {
     @Autowired
     private ChapterRepository chapterRepository;
+
+    // @Autowired
+    // private CourseRepository courseRepository;
 
     // getAllChapters
     public List<Chapter> getAllChapter() {
@@ -54,4 +59,8 @@ public class ChapterService {
         return "Chapter with id " + chapter_id + " has been successfully deleted";
     }
 
+    
 }
+
+
+//January 22 2024 adding service class for organize code and function calling

@@ -1,3 +1,5 @@
+//January 22 2024 data transfer object
+
 package com.teambcmsproject.teambcmsprojectspringboot.DTO;
 
 public class InstructorDTO {
@@ -84,3 +86,4 @@ public class InstructorDTO {
     }
 
 }
+//January 22 2024 data transfer object
