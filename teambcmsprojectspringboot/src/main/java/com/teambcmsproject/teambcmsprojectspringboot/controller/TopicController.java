@@ -26,6 +26,7 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
     
+    //January 22 2024 modification for organize code and function calling
 
     @PostMapping("/createTopic") //orginal user
         Topic newTopic (@RequestBody Topic newTopic){
@@ -55,5 +56,8 @@ public class TopicController {
         String deleteTopic(@PathVariable Long topic_id){
             return topicService.deleteTopic(topic_id);
         }
+           
+    //January 22 2024 modification for organize code and function calling
+
 }
 //jaunary 13 2024

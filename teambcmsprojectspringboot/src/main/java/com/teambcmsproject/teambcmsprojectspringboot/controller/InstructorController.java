@@ -23,7 +23,9 @@ public class InstructorController {
 
     @Autowired
     private InstructorService instructorService;
-     
+    
+        //January 22 2024 modification for organize code and function calling
+
      @PostMapping("/createInstructor") //orginal user
     Instructor newInstructor(@RequestBody Instructor newInstructor){
      return instructorService.saveInstructor(newInstructor);
@@ -55,5 +57,6 @@ public class InstructorController {
       return instructorService.deleteInstructor(instructor_id);
         }
       
- 
+     //January 22 2024 modification for organize code and function calling
+
 }

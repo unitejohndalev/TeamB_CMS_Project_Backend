@@ -28,6 +28,8 @@ public class CourseController {
   @Autowired
     private CourseService courseService;
 
+        //January 22 2024 modification for organize code and function calling
+
  @PostMapping("/createCourse") //orginal user
     Course newCourse (@RequestBody Course newCourse){
      return courseService.saveCourse(newCourse);
@@ -58,13 +60,9 @@ public class CourseController {
         String deleteCourse(@PathVariable Long course_id){
            return courseService.deleteCourse(course_id);
         }
-        
-  // @GetMapping("/getCourseByInstructorId/{instructor_id}")
-  //   Course getCourseByInstructorId(@PathVariable Long instructor_id){
-  //     return courseRepository.findById(instructor_id)
-  //     .orElseThrow(() -> new CourseNotFoundException(instructor_id));
-  //   }
-    
+       //January 22 2024 modification for organize code and function calling
+     
+
 
 }
   
