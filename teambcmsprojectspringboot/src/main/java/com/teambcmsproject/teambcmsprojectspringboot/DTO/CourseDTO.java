@@ -1,21 +1,6 @@
-//january 13 2024
-package com.teambcmsproject.teambcmsprojectspringboot.model;
+package com.teambcmsproject.teambcmsprojectspringboot.DTO;
 
-// import java.util.HashSet;
-// import java.util.Set;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-// import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.JoinTable;
-// import jakarta.persistence.ManyToMany;
-
-
-@Entity
-public class Course {
-    @Id
-    @GeneratedValue
+public class CourseDTO {    
     private Long course_id;
     private String course_title;
     private String course_description; 
@@ -24,30 +9,12 @@ public class Course {
     private String chapter_title;
     private Long instructor_id;
 
-    // @ManyToMany
-    // @JoinTable(
-    //     name="postChapter",
-    //     joinColumns = @JoinColumn(name = "fkcourse_id"),
-    //     inverseJoinColumns = @JoinColumn(name = "fkstudent_id")
-    // )
-    // private Set<Chapter>chapterAdded = new HashSet<>();
-
-   
-
     public Long getCourse_id() {
         return this.course_id;
     }
 
     public void setCourse_id(Long course_id) {
         this.course_id = course_id;
-    }
-
-    public Long getInstructor_id() {
-        return this.instructor_id;
-    }
-
-    public void setInstructor_id(Long instructor_id) {
-        this.instructor_id = instructor_id;
     }
 
     public String getCourse_title() {
@@ -89,9 +56,13 @@ public class Course {
     public void setChapter_title(String chapter_title) {
         this.chapter_title = chapter_title;
     }
-    
-    // public Set<Chapter> getChapterAdded() {
-    //     return this.chapterAdded;
-    // }
+
+    public Long getInstructor_id() {
+        return this.instructor_id;
+    }
+
+    public void setInstructor_id(Long instructor_id) {
+        this.instructor_id = instructor_id;
+    }
+
 }
-//january 13 2024
