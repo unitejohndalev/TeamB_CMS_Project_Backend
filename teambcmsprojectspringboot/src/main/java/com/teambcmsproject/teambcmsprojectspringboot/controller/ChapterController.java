@@ -1,7 +1,7 @@
 package com.teambcmsproject.teambcmsprojectspringboot.controller;
 
 import java.util.List;
-import java.util.Optional;
+// import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.ChapterService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
-import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
-import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
-import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
+// import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
+// import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
+// import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
 @RestController
 @CrossOrigin("http://localhost:5173")
@@ -25,11 +25,11 @@ public class ChapterController {
     @Autowired
     private ChapterService chapterService;
      
-    @Autowired
-    private ChapterRepository chapterRepository;
+    // @Autowired
+    // private ChapterRepository chapterRepository;
 
-    @Autowired
-    private CourseRepository courseRepository;
+    // @Autowired
+    // private CourseRepository courseRepository;
 
     //January 22 2024 modification for organize code and function calling
 

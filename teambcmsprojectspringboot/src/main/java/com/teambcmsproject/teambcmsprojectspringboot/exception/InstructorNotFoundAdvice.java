@@ -16,7 +16,7 @@ public class InstructorNotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(InstructorNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public Map<String, String> ExceptionHandler(InstructorNotFoundException exception){
+    public Map<String, String> ExceptionHandler(InstructorNotFoundException exception) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", exception.getMessage());
 
