@@ -8,7 +8,7 @@ package com.teambcmsproject.teambcmsprojectspringboot.model;
     public class Topic {
         @Id
         @GeneratedValue
-        private Long topic_id;
+        private Long topic_id ;
         private String topic_title;
         private String topic_description;
         private String topic_file;

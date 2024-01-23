@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.teambcmsproject.teambcmsprojectspringboot.exception.ChapterNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
-import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
+// import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
 @Service
 public class ChapterService {
