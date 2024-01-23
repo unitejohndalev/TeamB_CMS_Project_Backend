@@ -2,12 +2,15 @@
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 
+import java.sql.Date;
+
 // import java.util.HashSet;
 // import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+
 // import jakarta.persistence.ManyToMany;
 
 @Entity
@@ -17,13 +20,13 @@ public class Course {
     private Long course_id;
     private String course_title;
     private String course_description; 
-    private String course_start_date;
-    private String course_end_date;
-    private String chapter_title;
-    private Long instructor_id;
+    private Date course_start_date;
+    private Date course_end_date;
+
 
     // @ManyToMany(mappedBy = "courseCreated")
     // private Set<Chapter> chapters = new HashSet<>();
+    
 
 
 
@@ -33,14 +36,6 @@ public class Course {
 
     public void setCourse_id(Long course_id) {
         this.course_id = course_id;
-    }
-
-    public Long getInstructor_id() {
-        return this.instructor_id;
-    }
-
-    public void setInstructor_id(Long instructor_id) {
-        this.instructor_id = instructor_id;
     }
 
     public String getCourse_title() {
@@ -59,29 +54,24 @@ public class Course {
         this.course_description = course_description;
     }
 
-    public String getCourse_start_date() {
+    public Date getCourse_start_date() {
         return this.course_start_date;
     }
 
-    public void setCourse_start_date(String course_start_date) {
+    public void setCourse_start_date(Date course_start_date) {
         this.course_start_date = course_start_date;
     }
 
-    public String getCourse_end_date() {
+    public Date getCourse_end_date() {
         return this.course_end_date;
     }
 
-    public void setCourse_end_date(String course_end_date) {
+    public void setCourse_end_date(Date course_end_date) {
         this.course_end_date = course_end_date;
     }
 
-    public String getChapter_title() {
-        return this.chapter_title;
-    }
-
-    public void setChapter_title(String chapter_title) {
-        this.chapter_title = chapter_title;
-    }
+  
+  
     
     // public Set<Chapter> getChapters() {
     //     return chapters;

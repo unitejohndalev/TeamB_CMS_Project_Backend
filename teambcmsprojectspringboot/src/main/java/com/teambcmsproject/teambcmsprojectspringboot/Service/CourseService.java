@@ -30,7 +30,6 @@ public class CourseService {
 
     public Course saveCourse(Course newCourse) {
         System.out.println(newCourse.getCourse_id());
-        System.out.println(newCourse.getInstructor_id());
         System.out.println(newCourse.getCourse_title());
         System.out.println(newCourse.getCourse_description());
         System.out.println(newCourse.getCourse_start_date());
@@ -42,7 +41,7 @@ public class CourseService {
             if(!courseRepository.existsById(course_id)){
                 throw new TopicNotFoundException(course_id);
             }
-            courseRepository.deleteById( course_id);
+            courseRepository.deleteById(course_id);
             return "Course with id "+course_id+" has been successfully deleted";
     }
     
@@ -53,7 +52,6 @@ public class CourseService {
         course.setCourse_description(newCourse.getCourse_description());
         course.setCourse_start_date(newCourse.getCourse_start_date());
         course.setCourse_end_date(newCourse.getCourse_end_date());
-        course.setChapter_title(newCourse.getChapter_title());
         return courseRepository.save(course);
         
       }).orElseThrow(()-> new CourseNotFoundException(course_id));

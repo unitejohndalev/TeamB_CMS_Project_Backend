@@ -1,8 +1,13 @@
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Instructor {
@@ -19,6 +24,9 @@ public class Instructor {
     private byte[] instructor_profile_picture_data;
     private String instructor_contact_number;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name ="fk_instructor_id", referencedColumnName = "instructor_id")
+    private List<Course> course;
 
 
 

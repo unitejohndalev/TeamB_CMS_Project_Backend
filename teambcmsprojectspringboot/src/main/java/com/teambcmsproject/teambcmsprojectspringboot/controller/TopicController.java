@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.TopicService;
@@ -19,6 +20,7 @@ import com.teambcmsproject.teambcmsprojectspringboot.model.Topic;
 
 
 @RestController
+@RequestMapping("/api/topics")
 @CrossOrigin("http://localhost:5173")
 
 public class TopicController {
@@ -28,31 +30,31 @@ public class TopicController {
     
     //January 22 2024 modification for organize code and function calling
 
-    @PostMapping("/createTopic") //orginal user
+    @PostMapping() //orginal user
         Topic newTopic (@RequestBody Topic newTopic){
        return topicService.saveTopic(newTopic);
     }
 
-    @GetMapping("/getTopic") //orginal users
+    @GetMapping() //orginal users
     List<Topic>getAllTopic(){
         return topicService.getAllTopic();
     }
 /*january 16 2024 updating chapter data and getchapter by id*/
     //show by id 
-  @GetMapping("/getTopic/{topic_id}")
+  @GetMapping("/{topic_id}")
   Topic getTopicById(@PathVariable Long topic_id){
     return topicService.getTopicById(topic_id);
   }
  
 
   //edit data 
-  @PutMapping("/getTopic/{topic_id}")
+  @PutMapping("/{topic_id}")
   Topic updateTopic (@RequestBody Topic newTopic, @PathVariable Long topic_id){
      return topicService.updateTopic(newTopic, topic_id);
   }
     /*january 16 2024 */
 
-    @DeleteMapping("/getTopic/{topic_id}")
+    @DeleteMapping("/{topic_id}")
         String deleteTopic(@PathVariable Long topic_id){
             return topicService.deleteTopic(topic_id);
         }

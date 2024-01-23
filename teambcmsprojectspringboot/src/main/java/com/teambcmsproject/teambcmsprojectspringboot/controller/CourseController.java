@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.CourseService;
@@ -21,6 +22,7 @@ import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 
 
 @RestController
+@RequestMapping("/api/courses")
 @CrossOrigin("http://localhost:5173")
 
 public class CourseController {
@@ -30,11 +32,11 @@ public class CourseController {
 
         //January 22 2024 modification for organize code and function calling
 
- @PostMapping("/createCourse") //orginal user
+ @PostMapping() //orginal user
     Course newCourse (@RequestBody Course newCourse){
      return courseService.saveCourse(newCourse);
   }
-   @GetMapping("/getCourse") //orginal users
+   @GetMapping() //orginal users
   List<Course>getAllCourse(){
     return courseService.getAllCourse();
 
@@ -43,20 +45,20 @@ public class CourseController {
 /*january 16 2024 updating course data and getcourse by id*/
 
   //show by id 
-  @GetMapping("/getCourse/{course_id}")
+  @GetMapping("/{course_id}")
   Course getCourseById(@PathVariable Long course_id){
     return courseService.getCouseById(course_id);
   }
  
 
   //edit data 
-  @PutMapping("/getCourse/{course_id}")
+  @PutMapping("/{course_id}")
   Course updateCourse(@RequestBody Course newCourse, @PathVariable Long course_id){
      return courseService.updateCourse(newCourse, course_id);
   }
     /*january 16 2024 */
    
-    @DeleteMapping("/getCourse/{course_id}")
+    @DeleteMapping("/{course_id}")
         String deleteCourse(@PathVariable Long course_id){
            return courseService.deleteCourse(course_id);
         }

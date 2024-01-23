@@ -2,12 +2,14 @@
 
 package com.teambcmsproject.teambcmsprojectspringboot.DTO;
 
+import java.sql.Date;
+
 public class CourseDTO {    
     private Long course_id;
     private String course_title;
     private String course_description; 
-    private String course_start_date;
-    private String course_end_date;
+    private Date course_start_date;
+    private Date course_end_date;
     private String chapter_title;
     private Long instructor_id;
 
@@ -35,19 +37,19 @@ public class CourseDTO {
         this.course_description = course_description;
     }
 
-    public String getCourse_start_date() {
+    public Date getCourse_start_date() {
         return this.course_start_date;
     }
 
-    public void setCourse_start_date(String course_start_date) {
+    public void setCourse_start_date(Date course_start_date) {
         this.course_start_date = course_start_date;
     }
 
-    public String getCourse_end_date() {
+    public Date getCourse_end_date() {
         return this.course_end_date;
     }
 
-    public void setCourse_end_date(String course_end_date) {
+    public void setCourse_end_date(Date course_end_date) {
         this.course_end_date = course_end_date;
     }
 
@@ -67,5 +69,5 @@ public class CourseDTO {
         this.instructor_id = instructor_id;
     }
 
-}
+}   
 //January 22 2024 data transfer object
