@@ -26,7 +26,7 @@ public class CourseChapterController {
     private CourseRepository courseRepository;
 
     @Autowired
-    private ChapterRepository chapterRepository;
+    private ChapterRepository chapterRepository ;
 
     public CourseChapterController(CourseRepository courseRepository,
     ChapterRepository chapterRepository){
