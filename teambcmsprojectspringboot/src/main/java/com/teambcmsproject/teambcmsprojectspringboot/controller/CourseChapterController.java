@@ -1,3 +1,5 @@
+//january 24 2024 jpa relationship successfully integrated many to many
+
 package com.teambcmsproject.teambcmsprojectspringboot.controller;
 
 import java.util.List;
@@ -6,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.teambcmsproject.teambcmsprojectspringboot.Service.ChapterService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
@@ -50,3 +51,4 @@ public class CourseChapterController {
 
   
 }
+//january 24 2024 jpa relationship successfully integrated many to many

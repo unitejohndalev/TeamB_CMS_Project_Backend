@@ -30,6 +30,7 @@ public class Course {
     private String course_description; 
     private Date course_start_date;
     private Date course_end_date;
+//january 24 2024 jpa relationship successfully integrated many to many
 
     @ManyToMany (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinTable(
@@ -43,12 +44,12 @@ public class Course {
     )
     private Set<Chapter> chapters;
 
+//january 24 2024 jpa relationship successfully integrated many to many
+
+
   
 
-    // @ManyToMany(mappedBy = "courseCreated")
-    // private Set<Chapter> chapters = new HashSet<>();
-    
-
+   
 
 
     public Long getCourse_id() {

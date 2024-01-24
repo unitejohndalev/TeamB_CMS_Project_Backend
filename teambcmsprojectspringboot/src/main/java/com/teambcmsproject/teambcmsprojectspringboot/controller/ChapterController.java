@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.ChapterService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
-import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
-import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
-import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
 
 @RestController
@@ -28,9 +25,6 @@ public class ChapterController {
     @Autowired
     private ChapterService chapterService;
 
-    @Autowired
-    private ChapterRepository chapterRepository;
-    private CourseRepository courseRepository;
 
      
     
@@ -67,16 +61,6 @@ public class ChapterController {
         return chapterService.deleteChapter(chapter_id);
     }
 
-    // @PutMapping("/{chapter_id}/courses/{course_id}")
-    // Chapter createCourseToChapter (
-    //     @PathVariable Long chapter_id,
-    //     @PathVariable Long course_id
-    // ){
-    //     Chapter chapter = chapterRepository.findById(chapter_id).get();
-    //     Course course = courseRepository.findById(course_id).get();
-    //     chapter.createCourse.add(course);
-    //     return chapterRepository.save(chapter);
-    // }
     
 
 }
