@@ -24,10 +24,13 @@ public class Instructor {
     private byte[] instructor_profile_picture_data;
     private String instructor_contact_number;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    //january 24 2024 jpa relationship successfully integrated many to many
+
+    @OneToMany(targetEntity = Course.class,cascade = CascadeType.ALL)
     @JoinColumn(name ="fk_instructor_id", referencedColumnName = "instructor_id")
     private List<Course> course;
 
+//january 24 2024 jpa relationship successfully integrated many to many
 
 
     public Long getInstructor_id() {
