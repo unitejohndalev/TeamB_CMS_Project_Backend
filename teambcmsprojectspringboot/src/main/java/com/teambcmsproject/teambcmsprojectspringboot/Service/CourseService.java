@@ -23,7 +23,7 @@ public class CourseService {
             return courseRepository.findAll();
     }
 
-    public Course getCouseById(Long course_id) {
+    public Course getCourseById(Long course_id) {
         return courseRepository.findById(course_id)
         .orElseThrow(() -> new CourseNotFoundException(course_id));
     }

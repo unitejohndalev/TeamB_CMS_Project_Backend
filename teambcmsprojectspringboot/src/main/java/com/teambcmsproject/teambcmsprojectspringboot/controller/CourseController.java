@@ -47,7 +47,7 @@ public class CourseController {
   //show by id 
   @GetMapping("/{course_id}")
   Course getCourseById(@PathVariable Long course_id){
-    return courseService.getCouseById(course_id);
+    return courseService.getCourseById(course_id);
   }
  
 
