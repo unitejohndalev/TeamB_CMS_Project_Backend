@@ -53,8 +53,7 @@ public class Chapter {
     public String getChapter_date_created() {
         return this.chapter_date_created;
     }
-
-    public void setChapter_date_created(String chapter_date_created) {
+ public void setChapter_date_created(String chapter_date_created) {
         this.chapter_date_created = chapter_date_created;
     }
 
