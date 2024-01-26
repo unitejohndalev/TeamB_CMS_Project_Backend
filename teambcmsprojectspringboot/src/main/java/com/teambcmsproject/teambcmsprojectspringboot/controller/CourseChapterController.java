@@ -12,6 +12,7 @@ import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/course/chapter")
+@CrossOrigin("http://localhost:5173")
+
 public class CourseChapterController {
 
     @Autowired
