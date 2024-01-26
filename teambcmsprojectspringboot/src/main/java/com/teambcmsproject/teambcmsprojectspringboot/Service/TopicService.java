@@ -32,7 +32,6 @@ public class TopicService {
         System.out.println(newTopic.getTopic_description());
         System.out.println(newTopic.getTopic_file());
         System.out.println(newTopic.getTopic_link());
-        System.out.println(newTopic.getChapter_title());
         return topicRepository.save(newTopic);
     }
 
@@ -43,7 +42,6 @@ public class TopicService {
         topic.setTopic_description(newTopic.getTopic_description());
         topic.setTopic_file(newTopic.getTopic_file());
         topic.setTopic_link(newTopic.getTopic_link());
-        topic.setChapter_title(newTopic.getChapter_title());
         return topicRepository.save(topic);
         
       }).orElseThrow(()-> new TopicNotFoundException(topic_id));

@@ -19,7 +19,6 @@ public class Topic {
     private String topic_description;
     private String topic_file;
     private String topic_link;
-    private String chapter_title;
 //january 24 2024 jpa relationship successfully integrated many to many
 
     @JsonIgnore
@@ -27,13 +26,7 @@ public class Topic {
     private Set<Chapter> chapter;
 //january 24 2024 jpa relationship successfully integrated many to many
 
-    public Set<Chapter> getChapter() {
-        return this.chapter;
-    }
-
-    public void setChapter(Set<Chapter> chapter) {
-        this.chapter = chapter;
-    }
+  
 
     public Long getTopic_id() {
         return this.topic_id;
@@ -75,14 +68,14 @@ public class Topic {
         this.topic_link = topic_link;
     }
 
-    public String getChapter_title() {
-        return this.chapter_title;
+
+    public Set<Chapter> getChapter() {
+        return this.chapter;
     }
 
-    public void setChapter_title(String chapter_title) {
-        this.chapter_title = chapter_title;
+    public void setChapter(Set<Chapter> chapters) {
+        this.chapter = chapter;
     }
-
    
 
 }
