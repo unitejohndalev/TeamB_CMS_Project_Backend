@@ -23,7 +23,7 @@ public class Chapter {
     private String chapter_date_created;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "chapters", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "chapters", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Course> course;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

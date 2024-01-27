@@ -3,6 +3,7 @@ package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 
 import java.sql.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -42,7 +43,7 @@ public class Course {
             @JoinColumn(name = "chap_id", referencedColumnName = "chapter_id")       
         }
     )
-    private Set<Chapter> chapters;
+    private Set<Chapter> chapters = new HashSet<>();
 
 //january 24 2024 jpa relationship successfully integrated many to many
 

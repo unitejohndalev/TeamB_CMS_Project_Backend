@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Topic {
 //january 24 2024 jpa relationship successfully integrated many to many
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Chapter> chapter;
 //january 24 2024 jpa relationship successfully integrated many to many
 
@@ -73,7 +74,7 @@ public class Topic {
         return this.chapter;
     }
 
-    public void setChapter(Set<Chapter> chapters) {
+    public void setChapter(Set<Chapter> chapter) {
         this.chapter = chapter;
     }
    
