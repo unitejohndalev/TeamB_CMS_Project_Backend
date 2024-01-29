@@ -1,15 +1,12 @@
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
-import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+
 
 @Entity
 public class Topic {
@@ -22,9 +19,7 @@ public class Topic {
     private String topic_link;
 //january 24 2024 jpa relationship successfully integrated many to many
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "topics", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Chapter> chapter;
+ 
 //january 24 2024 jpa relationship successfully integrated many to many
 
   
@@ -69,6 +64,12 @@ public class Topic {
         this.topic_link = topic_link;
     }
 
+
+
+   
+
+}
+// january 17 2024
 
     public Set<Chapter> getChapter() {
         return this.chapter;

@@ -3,24 +3,17 @@ package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 
-// import java.util.HashSet;
-// import java.util.Set;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 
-// import jakarta.persistence.ManyToMany;
+
+
 
 @Entity
 public class Course {
@@ -33,18 +26,7 @@ public class Course {
     private Date course_end_date;
 //january 24 2024 jpa relationship successfully integrated many to many
 
-    @ManyToMany (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    @JoinTable(
-        name = "course_chapter_table",
-        joinColumns = {
-            @JoinColumn(name = "cour_id", referencedColumnName = "course_id")       
-        },
-        inverseJoinColumns = {
-            @JoinColumn(name = "chap_id", referencedColumnName = "chapter_id")       
-        }
-    )
-    private Set<Chapter> chapters = new HashSet<>();
-
+   
 //january 24 2024 jpa relationship successfully integrated many to many
 
 
@@ -93,20 +75,5 @@ public class Course {
         this.course_end_date = course_end_date;
     }
 
-    public Set<Chapter> getChapters() {
-        return this.chapters;
-    }
-
-    public void setChapters(Set<Chapter> chapters) {
-        this.chapters = chapters;
-    }
-
-
-  
-  
-    
-    // public Set<Chapter> getChapters() {
-    //     return chapters;
-    // }
 }
 //january 13 2024
