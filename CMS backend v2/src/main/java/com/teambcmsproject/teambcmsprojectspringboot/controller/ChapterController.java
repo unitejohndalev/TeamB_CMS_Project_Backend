@@ -31,7 +31,7 @@ public class ChapterController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @PostMapping("/byCourse/{course_id}") 
+    @PostMapping("") 
     Chapter newChapter(@PathVariable Long course_id, @RequestBody Chapter newChapter) {
         Course course = courseRepository.findById(course_id)
             .orElseThrow(() -> new EntityNotFoundException("Course not found with id: " + course_id));
