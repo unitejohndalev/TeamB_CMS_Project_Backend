@@ -60,7 +60,7 @@ public class ChapterService {
         return "Chapter with id " + chapter_id + " has been successfully deleted";
     }
 
-    public List<Chapter> getChapterByCourseId(String course_id){
+    public List<Chapter> getChapterByCourseId(Long course_id){
       return chapterRepository.findByCourseId(course_id);
   }
 

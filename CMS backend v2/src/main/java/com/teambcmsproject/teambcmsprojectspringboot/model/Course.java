@@ -2,7 +2,10 @@
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Course {
@@ -24,6 +28,9 @@ public class Course {
 
     // january 24 2024 jpa relationship successfully integrated many to many
 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Chapter> chapters = new ArrayList<>();
+    
     @ManyToOne
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;

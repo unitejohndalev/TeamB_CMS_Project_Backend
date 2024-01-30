@@ -1,7 +1,6 @@
 //january 24 2014
 package com.teambcmsproject.teambcmsprojectspringboot.controller;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.CourseService;
@@ -24,7 +22,7 @@ import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 
 
 @RestController
-@RequestMapping("/api/course")
+@RequestMapping("/api/courses")
 @CrossOrigin("http://localhost:5173")
 
 public class CourseController {
@@ -35,12 +33,8 @@ public class CourseController {
         //January 22 2024 modification for organize code and function calling
 
  @PostMapping() //orginal user
-    Course saveCourse (@RequestParam("course_title") String course_title,
-                       @RequestParam("course_description") String course_description, 
-                       @RequestParam("course_start_date") Date course_start_date, 
-                       @RequestParam("course_end_date") Date course_end_date, 
-                       @RequestParam("instructor_id") Long instructor_id){
-     return courseService.saveCourse(course_title, course_description, course_start_date, course_end_date, instructor_id);
+    Course newCourse (@RequestBody Course newCourse){
+     return courseService.saveCourse(newCourse);
   }
    @GetMapping() //orginal users
   List<Course>getAllCourse(){
@@ -56,11 +50,11 @@ public class CourseController {
     return courseService.getCourseById(course_id);
   }
  
+ 
   @GetMapping("/byInstructor/{instructor_id}")
     public List<Course> getCourseByInstructorId(@PathVariable Long instructor_id) {
         return courseService.getCourseByInstructorId(instructor_id);
     }
-
 
   //edit data 
   @PutMapping("/{course_id}")
