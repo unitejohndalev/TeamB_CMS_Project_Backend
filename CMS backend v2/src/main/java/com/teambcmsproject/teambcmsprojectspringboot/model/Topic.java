@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 
 @Entity
@@ -19,7 +21,17 @@ public class Topic {
     private String topic_link;
 //january 24 2024 jpa relationship successfully integrated many to many
 
- 
+    @ManyToOne
+    @JoinColumn(name ="chapter_id")
+    private Chapter chapter;
+
+    public Chapter getChapter() {
+        return this.chapter;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
+    }
 //january 24 2024 jpa relationship successfully integrated many to many
 
   
@@ -69,16 +81,6 @@ public class Topic {
    
 
 }
-// january 17 2024
 
-    public Set<Chapter> getChapter() {
-        return this.chapter;
-    }
 
-    public void setChapter(Set<Chapter> chapter) {
-        this.chapter = chapter;
-    }
-   
-
-}
 // january 17 2024

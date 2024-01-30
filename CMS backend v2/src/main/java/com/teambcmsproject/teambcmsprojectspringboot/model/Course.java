@@ -1,39 +1,32 @@
 //january 13 2024
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
-
 import java.sql.Date;
-
-
 
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Course {
     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long course_id;
     private String course_title;
-    private String course_description; 
+    private String course_description;
     private Date course_start_date;
     private Date course_end_date;
-//january 24 2024 jpa relationship successfully integrated many to many
+    // january 24 2024 jpa relationship successfully integrated many to many
 
-   
-//january 24 2024 jpa relationship successfully integrated many to many
+    // january 24 2024 jpa relationship successfully integrated many to many
 
-
-  
-
-   
-
+    @ManyToOne
+    @JoinColumn(name = "instructor_id")
+    private Instructor instructor;
 
     public Long getCourse_id() {
         return this.course_id;
@@ -75,5 +68,13 @@ public class Course {
         this.course_end_date = course_end_date;
     }
 
+    public Instructor getInstructor() {
+        return this.instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
 }
-//january 13 2024
+// january 13 2024

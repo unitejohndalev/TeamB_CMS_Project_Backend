@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.teambcmsproject.teambcmsprojectspringboot.exception.ChapterNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
 // import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
@@ -59,7 +60,10 @@ public class ChapterService {
         return "Chapter with id " + chapter_id + " has been successfully deleted";
     }
 
-   
+    public List<Chapter> getChapterByCourseId(String course_id){
+      return chapterRepository.findByCourseId(course_id);
+  }
+
     
 }
 

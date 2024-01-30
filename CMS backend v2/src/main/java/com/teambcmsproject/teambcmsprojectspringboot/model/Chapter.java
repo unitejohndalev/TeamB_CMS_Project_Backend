@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Chapter {
@@ -16,7 +18,18 @@ public class Chapter {
     private Long chapter_id;
     private String chapter_title;
     private String chapter_date_created;
+//january 30 2024
+    @ManyToOne 
+    @JoinColumn(name ="course_id")
+    private Course course;
 
+    public Course getCourse() {
+        return this.course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
 
     public Long getChapter_id() {

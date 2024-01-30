@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.ChapterService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 
 
 @RestController
@@ -61,7 +62,10 @@ public class ChapterController {
         return chapterService.deleteChapter(chapter_id);
     }
 
-    
+      @GetMapping("/byCourse/{course_id}")
+    public List<Chapter> getChapterByCourseId(@PathVariable String chapter_id) {
+        return chapterService.getChapterByCourseId(chapter_id);
+    }
 
 }
     //January 22 2024 modification for organize code and function calling
