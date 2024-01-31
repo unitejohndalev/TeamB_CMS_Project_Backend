@@ -52,9 +52,10 @@ public class ChapterController {
     String deleteChapter(@PathVariable Long chapter_id) {
         return chapterService.deleteChapter(chapter_id);
     }
-
+  //january 31 2024
     @GetMapping("/byCourse/{course_id}")
     public List<Chapter> getChapterByCourseId(@PathVariable Long course_id) {
         return chapterService.getChapterByCourseId(course_id);
     }
+      //january 31 2024
 }
