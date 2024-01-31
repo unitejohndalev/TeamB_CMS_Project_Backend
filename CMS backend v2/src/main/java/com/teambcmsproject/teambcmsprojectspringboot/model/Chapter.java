@@ -20,6 +20,7 @@ public class Chapter {
     private String chapter_title;
     private String chapter_date_created;
 //january 30 2024
+  //january 31 2024
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name ="course_id")
     private Course course;
@@ -31,7 +32,7 @@ public class Chapter {
     public void setCourse(Course course) {
         this.course = course;
     }
-
+  //january 31 2024
 
     public Long getChapter_id() {
         return this.chapter_id;

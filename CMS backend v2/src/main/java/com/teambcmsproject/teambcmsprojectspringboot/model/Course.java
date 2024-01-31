@@ -29,6 +29,7 @@ public class Course {
     // january 24 2024 jpa relationship successfully integrated many to many
 
     //january 30 2024
+    //january 31 2024
     @ManyToOne(cascade = CascadeType.ALL) 
     @JoinColumn(name ="chapter_id")
     private Chapter chapter;
@@ -40,7 +41,7 @@ public class Course {
     public void setChapter(Chapter chapter) {
         this.chapter = chapter;
     }
-
+  //january 31 2024
 
    
 

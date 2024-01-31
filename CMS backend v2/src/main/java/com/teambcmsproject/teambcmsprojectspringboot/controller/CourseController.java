@@ -55,11 +55,12 @@ public class CourseController {
     public List<Course> getCourseByInstructorId(@PathVariable Long instructor_id) {
         return courseService.getCourseByInstructorId(instructor_id);
     }
+      //january 31 2024
     @GetMapping("/byChapter/{chapter_id}")
     public List<Course> getCourseByChapterId(@PathVariable Long chapter_id) {
         return courseService.getCourseByChapterId(chapter_id);
     }
-
+  //january 31 2024
 
   //edit data 
   @PutMapping("/{course_id}")
