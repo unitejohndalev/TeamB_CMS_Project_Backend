@@ -28,9 +28,22 @@ public class Course {
 
     // january 24 2024 jpa relationship successfully integrated many to many
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<Chapter> chapters = new ArrayList<>();
-    
+    //january 30 2024
+    @ManyToOne(cascade = CascadeType.ALL) 
+    @JoinColumn(name ="chapter_id")
+    private Chapter chapter;
+
+    public Chapter getChapter() {
+        return this.chapter;
+    }
+
+    public void setChapter(Chapter chapter) {
+        this.chapter = chapter;
+    }
+
+
+   
+
     @ManyToOne
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
