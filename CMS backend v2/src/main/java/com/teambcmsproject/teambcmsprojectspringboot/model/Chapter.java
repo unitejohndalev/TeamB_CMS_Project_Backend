@@ -18,7 +18,7 @@ public class Chapter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long chapter_id;
     private String chapter_title;
-    // private String chapter_date_created;
+    private String chapter_date_created;
 //january 30 2024
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name ="course_id")

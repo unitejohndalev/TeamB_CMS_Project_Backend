@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.ChapterService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
-import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
-import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api/chapters")
