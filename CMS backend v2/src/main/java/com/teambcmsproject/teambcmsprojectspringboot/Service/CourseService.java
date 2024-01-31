@@ -28,14 +28,38 @@ public class CourseService {
         .orElseThrow(() -> new CourseNotFoundException(course_id));
     }
 
+    // public Course saveCourse(Course newCourse) {
+    //     System.out.println(newCourse.getCourse_id());
+    //     System.out.println(newCourse.getCourse_title());
+    //     System.out.println(newCourse.getCourse_description());
+    //     System.out.println(newCourse.getCourse_start_date());
+    //     System.out.println(newCourse.getCourse_end_date());
+    //   return courseRepository.save(newCourse);
+    //   Long chapter_id = savedCourse.getChapter().getChapter_id();
+    // }
+
     public Course saveCourse(Course newCourse) {
-        System.out.println(newCourse.getCourse_id());
-        System.out.println(newCourse.getCourse_title());
-        System.out.println(newCourse.getCourse_description());
-        System.out.println(newCourse.getCourse_start_date());
-        System.out.println(newCourse.getCourse_end_date());
-      return courseRepository.save(newCourse);
-    }
+      System.out.println(newCourse.getCourse_id());
+      System.out.println(newCourse.getCourse_title());
+      System.out.println(newCourse.getCourse_description());
+      System.out.println(newCourse.getCourse_start_date());
+      System.out.println(newCourse.getCourse_end_date());
+  
+      // Save the newCourse entity
+      Course savedCourse = courseRepository.save(newCourse);
+  
+      // Check if savedCourse is not null and has a chapter associated with it
+      if (savedCourse != null && savedCourse.getChapter() != null) {
+          Long chapter_id = savedCourse.getChapter().getChapter_id();
+          System.out.println("Associated Chapter ID: " + chapter_id);
+      } else {
+          System.out.println("No associated chapter found.");
+      }
+  
+      // Return the savedCourse entity
+      return savedCourse;
+  }
+  
 
     public String deleteCourse(@PathVariable Long course_id){
             if(!courseRepository.existsById(course_id)){
@@ -59,6 +83,9 @@ public class CourseService {
 
   public List<Course> getCourseByInstructorId(Long instructor_id){
     return courseRepository.findByInstructorId(instructor_id);
+}
+public List<Course> getCourseByChapterId(Long chapter_id){
+  return courseRepository.findByChapterId(chapter_id);
 }
 }
 //January 22 2024 adding service class for organize code and function calling

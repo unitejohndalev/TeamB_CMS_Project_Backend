@@ -31,14 +31,10 @@ public class ChapterController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @PostMapping("") 
-    Chapter newChapter(@PathVariable Long course_id, @RequestBody Chapter newChapter) {
-        Course course = courseRepository.findById(course_id)
-            .orElseThrow(() -> new EntityNotFoundException("Course not found with id: " + course_id));
-        newChapter.setCourse(course);
+    @PostMapping() 
+    public Chapter saveChapter(Chapter newChapter) {
         return chapterService.saveChapter(newChapter);
     }
-
     @GetMapping() 
     List<Chapter> getAllChapter() {
         return chapterService.getAllChapter();
