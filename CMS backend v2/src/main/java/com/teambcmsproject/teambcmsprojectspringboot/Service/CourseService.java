@@ -37,7 +37,7 @@ public class CourseService {
     //   return courseRepository.save(newCourse);
     //   Long chapter_id = savedCourse.getChapter().getChapter_id();
     // }
-
+  //january 31 2024
     public Course saveCourse(Course newCourse) {
       System.out.println(newCourse.getCourse_id());
       System.out.println(newCourse.getCourse_title());
@@ -59,7 +59,7 @@ public class CourseService {
       // Return the savedCourse entity
       return savedCourse;
   }
-  
+    //january 31 2024
 
     public String deleteCourse(@PathVariable Long course_id){
             if(!courseRepository.existsById(course_id)){
