@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 
@@ -29,19 +31,20 @@ public class Course {
     // january 24 2024 jpa relationship successfully integrated many to many
 
     //january 30 2024
-    //january 31 2024
-    @ManyToOne(cascade = CascadeType.ALL) 
-    @JoinColumn(name ="chapter_id")
-    private Chapter chapter;
 
-    public Chapter getChapter() {
-        return this.chapter;
+    @OneToMany(mappedBy = "course", cascade = CascadeType.PERSIST)
+    private List<Chapter> chapters;
+
+    public List<Chapter> getChapters() {
+        return this.chapters;
     }
 
-    public void setChapter(Chapter chapter) {
-        this.chapter = chapter;
+    public void setChapters(List<Chapter> chapters) {
+        this.chapters = chapters;
     }
-  //january 31 2024
+
+ 
+
 
    
 

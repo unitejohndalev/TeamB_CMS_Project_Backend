@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.teambcmsproject.teambcmsprojectspringboot.exception.CourseNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.exception.TopicNotFoundException;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
@@ -37,7 +38,7 @@ public class CourseService {
     //   return courseRepository.save(newCourse);
     //   Long chapter_id = savedCourse.getChapter().getChapter_id();
     // }
-  //january 31 2024
+
     public Course saveCourse(Course newCourse) {
       System.out.println(newCourse.getCourse_id());
       System.out.println(newCourse.getCourse_title());
@@ -49,17 +50,20 @@ public class CourseService {
       Course savedCourse = courseRepository.save(newCourse);
   
       // Check if savedCourse is not null and has a chapter associated with it
-      if (savedCourse != null && savedCourse.getChapter() != null) {
-          Long chapter_id = savedCourse.getChapter().getChapter_id();
-          System.out.println("Associated Chapter ID: " + chapter_id);
-      } else {
-          System.out.println("No associated chapter found.");
-      }
+    if (savedCourse != null ) {
+        // Iterate over the list of chapters to retrieve the associated chapter IDs
+        for (Chapter chapter : savedCourse.getChapters()) {
+            Long chapter_id = chapter.getChapter_id();
+            System.out.println("Associated Chapter ID: " + chapter_id);
+        }
+    // } else {
+    //     System.out.println("No associated chapters found.");
+    }
   
       // Return the savedCourse entity
       return savedCourse;
   }
-    //january 31 2024
+  
 
     public String deleteCourse(@PathVariable Long course_id){
             if(!courseRepository.existsById(course_id)){
@@ -84,8 +88,8 @@ public class CourseService {
   public List<Course> getCourseByInstructorId(Long instructor_id){
     return courseRepository.findByInstructorId(instructor_id);
 }
-public List<Course> getCourseByChapterId(Long chapter_id){
-  return courseRepository.findByChapterId(chapter_id);
-}
+// public List<Course> getCourseByChapterId(Long chapter_id){
+//   return courseRepository.findByChapterId(chapter_id);
+// }
 }
 //January 22 2024 adding service class for organize code and function calling

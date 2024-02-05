@@ -42,7 +42,7 @@ public class ChapterService {
     //     Long course_id = savedChapter.getCourse().getCourse_id();
 
     // }
-  //january 31 2024
+
     // Create and save a new Chapter entity
 public Chapter saveChapter(Chapter newChapter) {
     // Print chapter information
@@ -64,7 +64,7 @@ public Chapter saveChapter(Chapter newChapter) {
     // Return the savedChapter entity
     return savedChapter;
 }
-  //january 31 2024
+
 
     // update chapter
     public Chapter updateChapter(@RequestBody Chapter newChapter, @PathVariable Long chapter_id) {
@@ -86,9 +86,9 @@ public Chapter saveChapter(Chapter newChapter) {
         return "Chapter with id " + chapter_id + " has been successfully deleted";
     }
 
-    public List<Chapter> getChapterByCourseId(Long course_id){
-      return chapterRepository.findByCourseId(course_id);
-  }
+//     public List<Chapter> getChapterByCourseId(Long course_id){
+//       return chapterRepository.findByCourseId(course_id);
+//   }
 
     
 }

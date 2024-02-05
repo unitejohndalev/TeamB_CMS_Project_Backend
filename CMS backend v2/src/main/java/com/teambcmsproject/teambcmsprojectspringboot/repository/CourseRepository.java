@@ -11,17 +11,16 @@ import org.springframework.data.repository.query.Param;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
-  //january 30 2024
+
     List<Course> findAll();
 
     Optional<Course> findById(Long course_id);
 
  @Query("Select c FROM Course c WHERE c.instructor.instructor_id = :instructor_id")
     List<Course> findByInstructorId(@Param("instructor_id")Long instructor_id);
-      //january 31 2024
-  //january 31 2024
-@Query("Select c FROM Course c WHERE c.chapter.chapter_id = :chapter_id")
-    List<Course> findByChapterId(@Param("chapter_id")Long chapter_id);
-   //january 31 2024   
+
+// @Query("Select c FROM Course c WHERE c.chapter.chapter_id = :chapter_id")
+//     List<Course> findByChapterId(@Param("chapter_id")Long chapter_id);
+    
 }
 // january 13 2024
