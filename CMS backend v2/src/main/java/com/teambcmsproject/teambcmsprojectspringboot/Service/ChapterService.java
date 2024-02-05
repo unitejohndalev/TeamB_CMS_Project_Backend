@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.teambcmsproject.teambcmsprojectspringboot.exception.ChapterNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
-import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
 // import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ChapterService {
@@ -78,6 +79,7 @@ public Chapter saveChapter(Chapter newChapter) {
                 }).orElseThrow(() -> new ChapterNotFoundException(chapter_id));
     }
 
+    @SuppressWarnings("null")
     public String deleteChapter(@PathVariable Long chapter_id) {
         if (!chapterRepository.existsById(chapter_id)) {
             throw new ChapterNotFoundException(chapter_id);
@@ -86,9 +88,9 @@ public Chapter saveChapter(Chapter newChapter) {
         return "Chapter with id " + chapter_id + " has been successfully deleted";
     }
 
-//     public List<Chapter> getChapterByCourseId(Long course_id){
-//       return chapterRepository.findByCourseId(course_id);
-//   }
+    public List<Chapter> getChapterByCourseId(Long course_id){
+      return chapterRepository.findByCourseId(course_id);
+  }
 
     
 }

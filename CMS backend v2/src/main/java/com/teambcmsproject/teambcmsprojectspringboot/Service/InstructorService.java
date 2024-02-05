@@ -22,6 +22,7 @@ public class InstructorService {
         return instructorRepository.findAll();
     }
 
+    @SuppressWarnings("null")
     public Instructor getInstructorById(Long instructor_id) {
         return instructorRepository.findById(instructor_id)
         .orElseThrow(() -> new InstructorNotFoundException(instructor_id));
@@ -36,6 +37,7 @@ public class InstructorService {
         return instructorRepository.save(newInstructor);
     }
 
+    @SuppressWarnings("null")
     public  Instructor updateInstructor(@RequestBody Instructor newInstructor, @PathVariable Long instructor_id){
       return  instructorRepository.findById(instructor_id)
       .map(instructor ->{
@@ -52,6 +54,7 @@ public class InstructorService {
       }).orElseThrow(()-> new InstructorNotFoundException(instructor_id));
   }
 
+    @SuppressWarnings("null")
     public String deleteInstructor(@PathVariable Long instructor_id){
         if(!instructorRepository.existsById(instructor_id)){
             throw new InstructorNotFoundException(instructor_id);

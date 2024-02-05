@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.teambcmsproject.teambcmsprojectspringboot.Service.ChapterService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
 // import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
-import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
 
 // import jakarta.persistence.EntityNotFoundException;
 
@@ -55,8 +54,8 @@ public class ChapterController {
         return chapterService.deleteChapter(chapter_id);
     }
 
-    // @GetMapping("/byCourse/{course_id}")
-    // public List<Chapter> getChapterByCourseId(@PathVariable Long course_id) {
-    //     return chapterService.getChapterByCourseId(course_id);
-    // }
+    @GetMapping("/byCourse/{course_id}")
+    public List<Chapter> getChapterByCourseId(@PathVariable Long course_id) {
+        return chapterService.getChapterByCourseId(course_id);
+    }
 }
