@@ -38,7 +38,7 @@ public class Chapter {
 
     @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name ="fk_course_id", referencedColumnName = "course_id")
-    private Course course;
+    private Course course; 
 
     public Course getCourse() {
         return this.course;
