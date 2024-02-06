@@ -2,9 +2,10 @@
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+// import java.util.ArrayList;
+// import java.util.List;
 import java.util.List;
-
-
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -13,10 +14,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.OneToMany;
+// import jakarta.persistence.ManyToOne;
 // import jakarta.persistence.JoinColumn;
 // import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+// import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Course {
@@ -35,29 +39,51 @@ public class Course {
     //january 30 2024
 
     
-    @ManyToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name ="chapter_id")
-    private Chapter chapter;
+    // @ManyToOne (cascade = CascadeType.ALL)
+    // @JoinColumn(name ="chapter_id")
+    // private Chapter chapter;
 
 
-    public Chapter getChapter() {
-        return this.chapter;
-    }
+    // public Chapter getChapter() {
+    //     return this.chapter;
+    // }
 
-    public void setChapter(Chapter chapter) {
-        this.chapter = chapter;
-    }
+    // public void setChapter(Chapter chapter) {
+    //     this.chapter = chapter;
+    // }
   
 
+        //February 6 2024
+        
+        // @OneToOne (cascade = CascadeType.ALL)
+        // @JoinColumn(name = "chapter_id")
+        // private Chapter chapter;
 
+        // public Chapter getChapter() {
+        //     return this.chapter;
+        // }
+
+        // public void setChapter(Chapter chapter) {
+        //     this.chapter = chapter;
+        // }
+
+        @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+        private List <Chapter> chapter = new ArrayList<>();
+
+        public List<Chapter> getChapter() {
+            return this.chapter;
+        }
+
+        public void setChapter(List<Chapter> chapter) {
+            this.chapter = chapter;
+    }
+
+        //february 6 2024
  
 
 
    
 
-    // @ManyToOne
-    // @JoinColumn(name = "instructor_id")
-    // private Instructor instructor;
 
     public Long getCourse_id() {
         return this.course_id;
@@ -99,13 +125,9 @@ public class Course {
         this.course_end_date = course_end_date;
     }
 
-    // public Instructor getInstructor() {
-    //     return this.instructor;
-    // }
+    
 
-    // public void setInstructor(Instructor instructor) {
-    //     this.instructor = instructor;
-    // }
+   
 
 }
 // january 13 2024
