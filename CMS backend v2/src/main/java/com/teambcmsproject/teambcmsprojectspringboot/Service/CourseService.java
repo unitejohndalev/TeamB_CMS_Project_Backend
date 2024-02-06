@@ -29,34 +29,34 @@ public class CourseService {
         .orElseThrow(() -> new CourseNotFoundException(course_id));
     }
 
-    public Course saveCourse(Course newCourse) {
-      try {
-          // Print course information
-          System.out.println("Course Title: " + newCourse.getCourse_title());
-          System.out.println("Course Description: " + newCourse.getCourse_description());
-          System.out.println("Course Start Date: " + newCourse.getCourse_start_date());
-          System.out.println("Course End Date: " + newCourse.getCourse_end_date());
+  //   public Course saveCourse(Course newCourse) {
+  //     try {
+  //         // Print course information
+  //         System.out.println("Course Title: " + newCourse.getCourse_title());
+  //         System.out.println("Course Description: " + newCourse.getCourse_description());
+  //         System.out.println("Course Start Date: " + newCourse.getCourse_start_date());
+  //         System.out.println("Course End Date: " + newCourse.getCourse_end_date());
 
-          // Save the newCourse entity
-          Course savedCourse = courseRepository.save(newCourse);
+  //         // Save the newCourse entity
+  //         Course savedCourse = courseRepository.save(newCourse);
 
-          // Check if savedCourse is not null and has chapters associated with it
-          if (savedCourse != null && savedCourse.getChapter() != null) {
+  //         // Check if savedCourse is not null and has chapters associated with it
+  //         if (savedCourse != null && savedCourse.getChapters() != null) {
            
-                  Long chapter_id = savedCourse.getChapter().getChapter_id();
-                  System.out.println("Associated Chapter ID: " + chapter_id);
+  //                 Long chapter_id = savedCourse.getChapters().getChapter_id();
+  //                 System.out.println("Associated Chapter ID: " + chapter_id);
               
-          } else {
-              System.out.println("No associated chapters found.");
-          }
+  //         } else {
+  //             System.out.println("No associated chapters found.");
+  //         }
 
-          return savedCourse;
-      } catch (Exception e) {
-          // Handle any exceptions (e.g., database errors)
-          System.err.println("Error saving course: " + e.getMessage());
-          throw new RuntimeException("Failed to save course", e);
-      }
-  }
+  //         return savedCourse;
+  //     } catch (Exception e) {
+  //         // Handle any exceptions (e.g., database errors)
+  //         System.err.println("Error saving course: " + e.getMessage());
+  //         throw new RuntimeException("Failed to save course", e);
+  //     }
+  // }
     // public Course saveCourse(Course newCourse) {
     //     System.out.println(newCourse.getCourse_id());
     //     System.out.println(newCourse.getCourse_title());
@@ -67,29 +67,30 @@ public class CourseService {
     //   Long chapter_id = savedCourse.getChapter().getChapter_id();
     // }
 
-  //   public Course saveCourse(Course newCourse) {
-  //     // Print course details (except ID)
-  //     System.out.println("Course Title: " + newCourse.getCourse_title());
-  //     System.out.println("Course Description: " + newCourse.getCourse_description());
-  //     System.out.println("Course Start Date: " + newCourse.getCourse_start_date());
-  //     System.out.println("Course End Date: " + newCourse.getCourse_end_date());
+    public Course saveCourse(Course newCourse) {
+      // Print course details (except ID)
+      System.out.println("Course Id: " + newCourse.getCourse_id());
+      System.out.println("Course Title: " + newCourse.getCourse_title());
+      System.out.println("Course Description: " + newCourse.getCourse_description());
+      System.out.println("Course Start Date: " + newCourse.getCourse_start_date());
+      System.out.println("Course End Date: " + newCourse.getCourse_end_date());
 
-  //     // Save the newCourse entity
-  //     Course savedCourse = courseRepository.save(newCourse);
+      // Save the newCourse entity
+      Course savedCourse = courseRepository.save(newCourse);
 
-  //     // Print associated chapter IDs
-  //     if (savedCourse.getChapters() != null && !savedCourse.getChapters().isEmpty()) {
-  //         for (Chapter chapter : savedCourse.getChapters()) {
-  //             Long chapter_id = chapter.getChapter_id();
-  //             System.out.println("Associated Chapter ID: " + chapter_id);
-  //         }
-  //     } else {
-  //         System.out.println("No associated chapters found.");
-  //     }
+      // Print associated chapter IDs
+      if (savedCourse.getChapter() != null && !savedCourse.getChapter().isEmpty()) {
+          for (Chapter chapter : savedCourse.getChapter()) {
+              Long chapter_id = chapter.getChapter_id();
+              System.out.println("Associated Chapter ID: " + chapter_id);
+          }
+      } else {
+          System.out.println("No associated chapters found.");
+      }
 
-  //     // Return the savedCourse entity
-  //     return savedCourse;
-  // }
+      // Return the savedCourse entity
+      return savedCourse;
+  }
 
   
 
@@ -115,9 +116,9 @@ public class CourseService {
 
   // public List<Course> getCourseByInstructorId(Long instructor_id){
 //     return courseRepository.findByInstructorId(instructor_id);
-// }
-  public List<Course> getCourseByChapterId(Long chapter_id){
-    return courseRepository.findByChapterId(chapter_id);
-  }
+// // }
+  // public List<Course> getCourseByChapterId(Long chapter_id){
+  //   return courseRepository.findByChapterId(chapter_id);
+  // }
 }
 //January 22 2024 adding service class for organize code and function calling
