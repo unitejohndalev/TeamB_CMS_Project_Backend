@@ -12,12 +12,10 @@ import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
 
 public interface ChapterRepository extends JpaRepository<Chapter, Long>  {
   
-    @SuppressWarnings("null")
     List<Chapter> findAll();
 
-    @SuppressWarnings("null")
     Optional<Chapter> findById(Long chapter_id);
 
     @Query("Select ch FROM Chapter ch WHERE ch.course.course_id = :course_id")
-    List<Chapter> findByCourseId(@Param("course_id") Long course_id);
+    List<Chapter> findByCourse_id(@Param("course_id") Long course_id);
 }

@@ -23,6 +23,7 @@ public class ChapterService {
     // @Autowired
     // private CourseRepository courseRepository;
 
+    
     // getAllChapters
     public List<Chapter> getAllChapter() {
         return chapterRepository.findAll();
@@ -34,37 +35,13 @@ public class ChapterService {
                 .orElseThrow(() -> new ChapterNotFoundException(chapter_id));
     }
 
-    // // createNewChapter
-    // public Chapter saveChapter(Chapter newChapter) {
-      
-    //     System.out.println(newChapter.getChapter_title());
-    //     System.out.println(newChapter.getChapter_date_created());
-    //     return chapterRepository.save(newChapter);
-    //     Long course_id = savedChapter.getCourse().getCourse_id();
+    // createNewChapter
+    public Chapter saveChapter(@RequestBody Chapter newChapter) {
+        System.out.println(newChapter.getChapter_title());
+        System.out.println(newChapter.getChapter_date_created());
+        return chapterRepository.save(newChapter);
 
-    // }
-
-    // Create and save a new Chapter entity
-public Chapter saveChapter(Chapter newChapter) {
-    // Print chapter information
-    System.out.println("Chapter Title: " + newChapter.getChapter_title());
-    System.out.println("Chapter Date Created: " + newChapter.getChapter_date_created());
-
-    // Save the newChapter entity
-    Chapter savedChapter = chapterRepository.save(newChapter);
-
-    // Retrieve the associated course ID
-    Long course_id = null;
-    if (savedChapter != null && savedChapter.getCourse() != null) {
-        course_id = savedChapter.getCourse().getCourse_id();
     }
-
-    // Print the associated course ID
-    System.out.println("Associated Course ID: " + course_id);
-
-    // Return the savedChapter entity
-    return savedChapter;
-}
 
 
     // update chapter
@@ -79,7 +56,6 @@ public Chapter saveChapter(Chapter newChapter) {
                 }).orElseThrow(() -> new ChapterNotFoundException(chapter_id));
     }
 
-    @SuppressWarnings("null")
     public String deleteChapter(@PathVariable Long chapter_id) {
         if (!chapterRepository.existsById(chapter_id)) {
             throw new ChapterNotFoundException(chapter_id);
@@ -89,7 +65,7 @@ public Chapter saveChapter(Chapter newChapter) {
     }
 
     public List<Chapter> getChapterByCourseId(Long course_id){
-      return chapterRepository.findByCourseId(course_id);
+      return chapterRepository.findByCourse_id(course_id);
   }
 
     

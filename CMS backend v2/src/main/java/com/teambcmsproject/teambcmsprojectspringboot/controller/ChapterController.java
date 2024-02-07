@@ -31,7 +31,7 @@ public class ChapterController {
     // private CourseRepository courseRepository;
 
     @PostMapping() 
-    public Chapter saveChapter(Chapter newChapter) {
+    public Chapter saveChapter(@RequestBody Chapter newChapter) {
         return chapterService.saveChapter(newChapter);
     }
     @GetMapping() 

@@ -3,9 +3,9 @@ package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
-// import java.util.ArrayList;
-// import java.util.List;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -13,14 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
-// import jakarta.persistence.ManyToOne;
-// import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.ManyToOne;
-// import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
 @Entity
 public class Course {
@@ -38,35 +31,8 @@ public class Course {
     
     //january 30 2024
 
-    
-    // @ManyToOne (cascade = CascadeType.ALL)
-    // @JoinColumn(name ="chapter_id")
-    // private Chapter chapter;
-
-
-    // public Chapter getChapter() {
-    //     return this.chapter;
-    // }
-
-    // public void setChapter(Chapter chapter) {
-    //     this.chapter = chapter;
-    // }
-  
-
         //February 6 2024
-        
-        // @OneToOne (cascade = CascadeType.ALL)
-        // @JoinColumn(name = "chapter_id")
-        // private Chapter chapter;
-
-        // public Chapter getChapter() {
-        //     return this.chapter;
-        // }
-
-        // public void setChapter(Chapter chapter) {
-        //     this.chapter = chapter;
-        // }
-
+        @JsonIgnore
         @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
         private List <Chapter> chapter = new ArrayList<>();
 
@@ -126,7 +92,13 @@ public class Course {
     }
 
     
-
+//try
+@JsonIgnore
+public void addChapter(Chapter chapter) {
+    chapter.setCourse(this);
+    this.chapter.add(chapter);
+}
+//try
    
 
 }
