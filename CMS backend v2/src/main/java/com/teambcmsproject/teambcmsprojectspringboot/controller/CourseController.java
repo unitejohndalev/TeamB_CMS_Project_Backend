@@ -92,6 +92,12 @@ public class CourseController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Handle course not found scenario
     }
+
+
+  @GetMapping("/cour/{courseId}")
+  public ResponseEntity<Course> getCourse(@PathVariable Long courseId) {
+      return courseService.getCourse(courseId);
+  }
        //try
        
 
