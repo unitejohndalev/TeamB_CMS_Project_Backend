@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,8 +33,8 @@ public class Course {
 
         //February 6 2024
         @JsonIgnore
-        @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-        private List <Chapter> chapter = new ArrayList<>();
+         @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private List<Chapter> chapter;
 
         public List<Chapter> getChapter() {
             return this.chapter;

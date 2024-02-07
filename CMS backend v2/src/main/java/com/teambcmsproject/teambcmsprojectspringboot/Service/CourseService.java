@@ -3,9 +3,13 @@
 package com.teambcmsproject.teambcmsprojectspringboot.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -55,14 +59,25 @@ public class CourseService {
       return savedCourse;
   }
 //try
-public Course addChapterToCourse(Long courseId, Chapter chapter) {
-  Course course = courseRepository.findById(courseId).orElse(null);
-  if (course != null) {
-      course.addChapter(chapter);
-      return courseRepository.save(course);
+ public Course addChapterToCourse(Long courseId, Chapter chapter) {
+        Course course = courseRepository.findById(courseId).orElse(null);
+        if (course != null) {
+            course.addChapter(chapter);
+            return courseRepository.save(course);
+        }
+        return null; // Handle course not found scenario
+    }
+    
+    public ResponseEntity<Course> getCourse(Long courseId) {
+      Optional<Course> optionalCourse = courseRepository.findById(courseId);
+      if (optionalCourse.isPresent()) {
+          Course course = optionalCourse.get();
+          return new ResponseEntity<>(course, HttpStatus.OK);
+      } else {
+          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
   }
-  return null; // Handle course not found scenario
-}
+
 //try
   
 
