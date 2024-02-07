@@ -11,9 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-// import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+
 
 @Entity
 public class Chapter {
@@ -37,7 +35,7 @@ public class Chapter {
 
 
     @ManyToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name ="fk_course_id", referencedColumnName = "course_id")
+    @JoinColumn(name = "course_id")
     private Course course;
 
     public Course getCourse() {
