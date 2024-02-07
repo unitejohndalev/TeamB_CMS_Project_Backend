@@ -9,12 +9,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -30,27 +28,28 @@ public class Course {
 
     // january 24 2024 jpa relationship successfully integrated many to many
 
+    
     //january 30 2024
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.PERSIST)
-    private List<Chapter> chapters;
+        //February 6 2024
+        @JsonIgnore
+         @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private List<Chapter> chapter;
 
-    public List<Chapter> getChapters() {
-        return this.chapters;
+        public List<Chapter> getChapter() {
+            return this.chapter;
+        }
+
+        public void setChapter(List<Chapter> chapter) {
+            this.chapter = chapter;
     }
 
-    public void setChapters(List<Chapter> chapters) {
-        this.chapters = chapters;
-    }
-
+        //february 6 2024
  
 
 
    
 
-    @ManyToOne
-    @JoinColumn(name = "instructor_id")
-    private Instructor instructor;
 
     public Long getCourse_id() {
         return this.course_id;
@@ -92,13 +91,15 @@ public class Course {
         this.course_end_date = course_end_date;
     }
 
-    public Instructor getInstructor() {
-        return this.instructor;
-    }
-
-    public void setInstructor(Instructor instructor) {
-        this.instructor = instructor;
-    }
+    
+//try
+@JsonIgnore
+public void addChapter(Chapter chapter) {
+    chapter.setCourse(this);
+    this.chapter.add(chapter);
+}
+//try
+   
 
 }
 // january 13 2024

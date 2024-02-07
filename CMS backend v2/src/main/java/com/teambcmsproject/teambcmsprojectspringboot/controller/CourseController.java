@@ -4,6 +4,8 @@ package com.teambcmsproject.teambcmsprojectspringboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.CourseService;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
+import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository;
+
 
 
 
@@ -29,6 +34,9 @@ public class CourseController {
 
   @Autowired
     private CourseService courseService;
+  
+    @Autowired
+    CourseRepository courseRepository;
 
         //January 22 2024 modification for organize code and function calling
 
@@ -51,16 +59,16 @@ public class CourseController {
   }
  
  
-  @GetMapping("/byInstructor/{instructor_id}")
-    public List<Course> getCourseByInstructorId(@PathVariable Long instructor_id) {
-        return courseService.getCourseByInstructorId(instructor_id);
+  // @GetMapping("/byInstructor/{instructor_id}")
+  //   public List<Course> getCourseByInstructorId(@PathVariable Long instructor_id) {
+  //       return courseService.getCourseByInstructorId(instructor_id);
+  //   }
+     // january 31 2024
+    @GetMapping("/byChapter/{chapter_id}")
+    public List<Course> getCourseByChapterId(@PathVariable Long chapter_id) {
+        return courseService.getCourseByChapterId(chapter_id);
     }
-      //january 31 2024
-    // @GetMapping("/byChapter/{chapter_id}")
-    // public List<Course> getCourseByChapterId(@PathVariable Long chapter_id) {
-    //     return courseService.getCourseByChapterId(chapter_id);
-    // }
-  //january 31 2024
+  // //january 31 2024
 
   //edit data 
   @PutMapping("/{course_id}")
@@ -75,6 +83,23 @@ public class CourseController {
         }
        //January 22 2024 modification for organize code and function calling
      
+       //try 
+        @PostMapping("/{courseId}/chapters")
+    public ResponseEntity<Course> addChapterToCourse(@PathVariable Long courseId, @RequestBody Chapter chapter) {
+        Course updatedCourse = courseService.addChapterToCourse(courseId, chapter);
+        if (updatedCourse != null) {
+            return new ResponseEntity<>(updatedCourse, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Handle course not found scenario
+    }
+
+
+  @GetMapping("/cour/{courseId}")
+  public ResponseEntity<Course> getCourse(@PathVariable Long courseId) {
+      return courseService.getCourse(courseId);
+  }
+       //try
+       
 
 
 }
