@@ -3,9 +3,11 @@ package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,8 +35,8 @@ public class Chapter {
     //     this.courses = courses;
     // }
 
-
-    @ManyToOne (cascade = CascadeType.ALL)
+   @JsonIgnore
+    @ManyToOne (cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
 

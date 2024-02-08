@@ -8,6 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+// import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -32,8 +33,8 @@ public class Course {
     //january 30 2024
 
         //February 6 2024
-        @JsonIgnore
-         @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+  
+         @OneToMany(mappedBy = "course",cascade =  CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Chapter> chapter;
 
         public List<Chapter> getChapter() {
@@ -95,10 +96,11 @@ public class Course {
 //try
 @JsonIgnore
 public void addChapter(Chapter chapter) {
-    chapter.setCourse(this);
-    this.chapter.add(chapter);
+    chapter.setCourse(this);  // Set the course for the chapter
+    this.getChapter().add(chapter);  // Add the chapter to the collection of chapters
 }
-//try
+
+// //try
    
 
 }
