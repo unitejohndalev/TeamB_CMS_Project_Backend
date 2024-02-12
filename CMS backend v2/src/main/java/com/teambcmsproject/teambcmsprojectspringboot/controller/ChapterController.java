@@ -27,33 +27,37 @@ public class ChapterController {
     @Autowired
     private ChapterService chapterService;
 
-    // @Autowired
-    // private CourseRepository courseRepository;
-
+  
+    //POST MAPPING FOR CREATING NEW CHAPTER
     @PostMapping() 
     public Chapter saveChapter(@RequestBody Chapter newChapter) {
         return chapterService.saveChapter(newChapter);
     }
+
+    //GET MAPPING FOR GETTING ALL CHAPTERS
     @GetMapping() 
     List<Chapter> getAllChapter() {
         return chapterService.getAllChapter();
     }
 
+    //GET MAPPING FOR GETTING CHAPTERS BY ID
     @GetMapping("/{chapter_id}")
     Chapter getChapterById(@PathVariable Long chapter_id) {
         return chapterService.getChapterById(chapter_id);
     }
 
+    //PUT MAPPING FOR UPDATING CHAPTERS BY ID
     @PutMapping("/{chapter_id}")
     Chapter updateChapter(@RequestBody Chapter newChapter, @PathVariable Long chapter_id) {
         return chapterService.updateChapter(newChapter, chapter_id);
     }
 
+    //DELETE MAPPING TO UPDATE CHAPTERS BY ID
     @DeleteMapping("/{chapter_id}")
     String deleteChapter(@PathVariable Long chapter_id) {
         return chapterService.deleteChapter(chapter_id);
     }
-
+   //GET MAPPING TO GETTING CHAPTERS BY COURSE ID
     @GetMapping("/byCourse/{course_id}")
     public List<Chapter> getChapterByCourseId(@PathVariable Long course_id) {
         return chapterService.getChapterByCourseId(course_id);

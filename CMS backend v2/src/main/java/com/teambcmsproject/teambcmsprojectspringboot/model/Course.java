@@ -8,6 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+// import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -28,28 +29,31 @@ public class Course {
 
     // january 24 2024 jpa relationship successfully integrated many to many
 
-    
-    //january 30 2024
+    // january 30 2024
 
-        //February 6 2024
-        @JsonIgnore
-         @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    // February 6 2024
+    // february 8 2024 bug fixed can add chapter inside course
+   
+    // mapping many to one from chapter
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Chapter> chapter;
 
-        public List<Chapter> getChapter() {
-            return this.chapter;
-        }
-
-        public void setChapter(List<Chapter> chapter) {
-            this.chapter = chapter;
+    public List<Chapter> getChapter() {
+        return this.chapter;
     }
 
-        //february 6 2024
- 
+    public void setChapter(List<Chapter> chapter) {
+        this.chapter = chapter;
+    }
 
-
-   
-
+    // used in addin chapter inside course
+    @JsonIgnore
+    public void addChapter(Chapter chapter) {
+        chapter.setCourse(this); // Set the course for the chapter
+        this.getChapter().add(chapter); // Add the chapter to the collection of chapters
+    }
+    // february 8 2024 bug fixed can add chapter inside course
+    // february 6 2024
 
     public Long getCourse_id() {
         return this.course_id;
@@ -90,16 +94,6 @@ public class Course {
     public void setCourse_end_date(Date course_end_date) {
         this.course_end_date = course_end_date;
     }
-
-    
-//try
-@JsonIgnore
-public void addChapter(Chapter chapter) {
-    chapter.setCourse(this);
-    this.chapter.add(chapter);
-}
-//try
-   
 
 }
 // january 13 2024
