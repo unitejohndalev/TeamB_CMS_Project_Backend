@@ -1,8 +1,15 @@
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity; // Importing Entity annotation from jakarta.persistence package
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue; // Importing GeneratedValue annotation from jakarta.persistence package
 import jakarta.persistence.Id; // Importing Id annotation from jakarta.persistence package
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Instructor {
@@ -21,9 +28,27 @@ public class Instructor {
     private String instructor_contact_number; // Contact number of the instructor
 
     // January 24, 2024: JPA relationship successfully integrated many-to-many
-
     // January 24, 2024: JPA relationship successfully integrated many-to-many
+    //February 13 2024
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Course> course; // List of course associated with the instructor
 
+    public List<Course> getCourse() {
+        return this.course;
+    }
+
+    public void setCourse(List<Course> course) {
+        this.course = course;
+    }
+
+      // Used in adding chapter inside course
+    @JsonIgnore
+    public void addCourse(Course course) {
+        course.setInstructor(this); // Set the intructor for the course
+        this.getCourse().add(course); // Add the course to the collection of course
+    }
+   
+    //February 13 2024
     public Long getInstructor_id() {
         return this.instructor_id; // Getter for instructor_id
     }

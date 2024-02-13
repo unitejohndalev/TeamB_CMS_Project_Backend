@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.teambcmsproject.teambcmsprojectspringboot.exception.InstructorNotFoundException;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Instructor;     
 import com.teambcmsproject.teambcmsprojectspringboot.repository.InstructorRepository;
 
@@ -23,7 +25,6 @@ public class InstructorService {
     }
 
     // Function to retrieve an instructor by its ID
-    @SuppressWarnings("null") // Suppressing warnings related to null value
     public Instructor getInstructorById(Long instructor_id) { // Method signature to retrieve an instructor by its ID
         return instructorRepository.findById(instructor_id) // referring to  findById() method of InstructorRepository interface
         .orElseThrow(() -> new InstructorNotFoundException(instructor_id)); // Handling InstructorNotFoundException
@@ -38,6 +39,16 @@ public class InstructorService {
         System.out.println(newInstructor.getInstructor_id());
         System.out.println(newInstructor.getInstructor_email());
         return instructorRepository.save(newInstructor); // referring to  save() method of InstructorRepository interface
+    }
+
+     // Function to add a chapter inside the course
+    public Instructor addCourseToInstructor(Long instructor_id, Course course) { // Method signature to add a chapter inside the course
+        Instructor instructor = instructorRepository.findById(instructor_id).orElse(null); // Retrieving course by ID
+        if (instructor != null) { // Checking if course exists
+            instructor.addCourse(course); // Adding chapter to course
+            return instructorRepository.save(instructor); // Saving updated course
+        }
+        return null; // Returning null if course not found
     }
 
     // Function to update an instructor
