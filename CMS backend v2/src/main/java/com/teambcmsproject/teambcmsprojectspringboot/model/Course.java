@@ -12,6 +12,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -25,6 +27,23 @@ public class Course {
     private Date course_start_date; // Start date of the course
     private Date course_end_date; // End date of the course
 
+
+    //february 13 2024
+     @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "instructor_id") // Defines the foreign key column in the cOURSE table
+    private Instructor instructor; // Associated instructor for the course
+
+    public Instructor getInstructor() {
+        return this.instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    
+    //february 13 2024
     // January 24, 2024: JPA relationship successfully integrated many-to-many
 
     // January 30, 2024

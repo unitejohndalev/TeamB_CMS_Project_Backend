@@ -3,6 +3,8 @@ package com.teambcmsproject.teambcmsprojectspringboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.InstructorService;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Instructor;
 
 @RestController
@@ -57,4 +61,15 @@ public class InstructorController {
     }
       
     // January 22, 2024 modification for organize code and function calling
+    //feb 13 2024
+     @PostMapping("/{instructor_id}/courses")
+    public ResponseEntity<Instructor> addCourseToInstructor(@PathVariable Long instructor_id, @RequestBody Course course) { // Adds course to instructor
+        Instructor updatedInstructor = instructorService.addCourseToInstructor(instructor_id, course);
+        if (updatedInstructor != null) {
+            return new ResponseEntity<>(updatedInstructor, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Handle course not found scenario
+    }
+        //feb 13 2024
+
 }
