@@ -2,8 +2,11 @@ package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 
 
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -20,8 +23,10 @@ public class Topic {
     private String topic_file;
     private String topic_link;
 //january 24 2024 jpa relationship successfully integrated many to many
-
-    @ManyToOne
+    //FEBRUARY 13 2024  done fixing bugs with jpa relationship
+    //jpa relationship one to many between chapter and topic
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name ="chapter_id")
     private Chapter chapter;
 
