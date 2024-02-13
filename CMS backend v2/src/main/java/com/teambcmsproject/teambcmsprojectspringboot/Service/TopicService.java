@@ -21,7 +21,6 @@ public class TopicService {
         return topicRepository.findAll();
     }
 
-    @SuppressWarnings("null")
     public Topic getTopicById(Long topic_id) {
         return topicRepository.findById(topic_id)
         .orElseThrow(() -> new TopicNotFoundException(topic_id));
@@ -36,7 +35,6 @@ public class TopicService {
         return topicRepository.save(newTopic);
     }
 
-    @SuppressWarnings("null")
     public Topic updateTopic (@RequestBody Topic newTopic, @PathVariable Long topic_id){
       return  topicRepository.findById(topic_id)
       .map(topic ->{
@@ -49,7 +47,6 @@ public class TopicService {
       }).orElseThrow(()-> new TopicNotFoundException(topic_id));
   }
 
-    @SuppressWarnings("null")
     public String deleteTopic(@PathVariable Long topic_id){
         if(!topicRepository.existsById(topic_id)){
             throw new TopicNotFoundException(topic_id);
@@ -57,5 +54,11 @@ public class TopicService {
         topicRepository.deleteById(topic_id);
         return "Topic with id "+topic_id+" has been successfully deleted";
     }
+
+    //try
+        public List<Topic> getTopicByChapterId(Long chapter_id){
+      return topicRepository.findByChapter_id(chapter_id);
+  }
+    //try
 }
 //January 22 2024 adding service class for organize code and function calling

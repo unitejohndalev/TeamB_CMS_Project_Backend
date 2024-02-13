@@ -3,6 +3,8 @@ package com.teambcmsproject.teambcmsprojectspringboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.ChapterService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
-// import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
+import com.teambcmsproject.teambcmsprojectspringboot.model.Topic;
 
-// import jakarta.persistence.EntityNotFoundException;
 
 @RestController
 @RequestMapping("/api/chapters")
@@ -62,4 +63,15 @@ public class ChapterController {
     public List<Chapter> getChapterByCourseId(@PathVariable Long course_id) {
         return chapterService.getChapterByCourseId(course_id);
     }
+
+    //try
+    @PostMapping("/{chapter_id}/topics")
+    public ResponseEntity<Chapter> addTopicToChapter(@PathVariable Long chapter_id, @RequestBody Topic topic) {
+      Chapter updatedChapter = chapterService.addTopicToChapter(chapter_id, topic);
+      if (updatedChapter != null) {
+        return new ResponseEntity<>(updatedChapter, HttpStatus.OK);
+      }
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Handle course not found scenario
+    }
+    //try
 }
