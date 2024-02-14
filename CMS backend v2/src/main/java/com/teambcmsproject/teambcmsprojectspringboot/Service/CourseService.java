@@ -30,29 +30,16 @@ public class CourseService {
     }
 
     // Function to create a new course with an array of chapters
+
     public Course saveCourse(@RequestBody Course newCourse) { // Method signature to create a new course
         // Printing course details (except ID)
         System.out.println("Course Title: " + newCourse.getCourse_title());
         System.out.println("Course Description: " + newCourse.getCourse_description());
         System.out.println("Course Start Date: " + newCourse.getCourse_start_date());
         System.out.println("Course End Date: " + newCourse.getCourse_end_date());
-
-        // Save the newCourse entity
-        Course savedCourse = courseRepository.save(newCourse); // referring to save() method of CourseRepository interface
-
-        // Print associated chapter IDs
-        if (savedCourse.getChapter() != null && !savedCourse.getChapter().isEmpty()) { // Checking if chapters exist
-            for (Chapter chapter : savedCourse.getChapter()) { // Looping through chapters
-                Long chapter_id = chapter.getChapter_id(); // Getting chapter ID
-                System.out.println("Associated Chapter ID: " + chapter_id); // Printing chapter ID
-            }
-        } else {
-            System.out.println("No associated chapters found."); // Printing if no associated chapters found
-        }
-
-        // Return the savedCourse entity
-        return savedCourse;
+        return courseRepository.save(newCourse); // referring to  save() method of CourseRepository interface
     }
+    
 
     // Function to add a chapter inside the course
     public Course addChapterToCourse(Long course_id, Chapter chapter) { // Method signature to add a chapter inside the course
