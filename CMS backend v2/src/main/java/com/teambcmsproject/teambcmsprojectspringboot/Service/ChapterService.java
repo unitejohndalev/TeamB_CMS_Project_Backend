@@ -58,20 +58,7 @@ public class ChapterService {
         // Printing chapter details
         System.out.println("Chapter Title: " + newChapter.getChapter_title());
         System.out.println("Chapter Date Created: " + newChapter.getChapter_date_created());
-
-        // Saving the new chapter entity
-        Chapter savedChapter = chapterRepository.save(newChapter); //  refers to save() method of ChapterRepository interface
-
-        // Printing associated topic IDs
-        if (savedChapter.getTopic() != null && !savedChapter.getTopic().isEmpty()) { // Checking if topics exist
-            for (Topic topic : savedChapter.getTopic()) { // Looping through topics
-                Long topic_id = topic.getTopic_id(); // Getting topic ID
-                System.out.println("Associated Topic ID: " + topic_id); // Printing topic ID
-            }
-        } else {
-            System.out.println("No associated Topic found."); // Printing if no associated topics found
-        }
-        return savedChapter; // Returning saved chapter
+        return chapterRepository.save(newChapter);
     }
 
     // Function to add a topic to a chapter
@@ -80,8 +67,7 @@ public class ChapterService {
         if (chapter != null) { // Checking if chapter exists
             chapter.addTopic(topic); // Adding topic to chapter
             return chapterRepository.save(chapter); // Saving updated chapter
-        }
-        return null; // Returning null if chapter not found
+        } throw new ChapterNotFoundException(chapter_id); // Returning error message if chapter not found
     }
     //febraury 13 2024
 }
