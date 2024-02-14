@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.teambcmsproject.teambcmsprojectspringboot.exception.InstructorNotFoundException;
-import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Instructor;     
 import com.teambcmsproject.teambcmsprojectspringboot.repository.InstructorRepository;
