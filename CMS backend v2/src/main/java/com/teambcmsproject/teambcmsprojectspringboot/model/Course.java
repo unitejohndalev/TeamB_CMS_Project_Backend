@@ -1,4 +1,4 @@
-//january 13 2024
+// January 13, 2024
 package com.teambcmsproject.teambcmsprojectspringboot.model;
 
 import java.sql.Date;
@@ -6,36 +6,55 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
-// import jakarta.persistence.CascadeType;
+import jakarta.persistence.CascadeType; // Importing CascadeType from jakarta.persistence package
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long course_id;
-    private String course_title;
-    private String course_description;
-    private Date course_start_date;
-    private Date course_end_date;
-    // january 24 2024 jpa relationship successfully integrated many to many
+    private Long course_id; // Unique identifier for the course
 
-    // january 24 2024 jpa relationship successfully integrated many to many
+    private String course_title; // Title of the course
+    private String course_description; // Description of the course
+    private Date course_start_date; // Start date of the course
+    private Date course_end_date; // End date of the course
 
-    // january 30 2024
 
-    // February 6 2024
-    // february 8 2024 bug fixed can add chapter inside course
-   
-    // mapping many to one from chapter
+    //february 13 2024
+     @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "instructor_id") // Defines the foreign key column in the cOURSE table
+    private Instructor instructor; // Associated instructor for the course
+
+    public Instructor getInstructor() {
+        return this.instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+    
+    //february 13 2024
+    // January 24, 2024: JPA relationship successfully integrated many-to-many
+
+    // January 30, 2024
+
+    // February 6, 2024
+
+    // February 8, 2024: Bug fixed - can add chapter inside course
+
+    // Mapping many-to-one relationship from Chapter
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Chapter> chapter;
+    private List<Chapter> chapter; // List of chapters associated with the course
 
     public List<Chapter> getChapter() {
         return this.chapter;
@@ -45,14 +64,16 @@ public class Course {
         this.chapter = chapter;
     }
 
-    // used in addin chapter inside course
+    // Used in adding chapter inside course
     @JsonIgnore
     public void addChapter(Chapter chapter) {
         chapter.setCourse(this); // Set the course for the chapter
         this.getChapter().add(chapter); // Add the chapter to the collection of chapters
     }
-    // february 8 2024 bug fixed can add chapter inside course
-    // february 6 2024
+
+    // February 8, 2024: Bug fixed - can add chapter inside course
+
+    // February 6, 2024
 
     public Long getCourse_id() {
         return this.course_id;
@@ -95,4 +116,4 @@ public class Course {
     }
 
 }
-// january 13 2024
+// January 13, 2024

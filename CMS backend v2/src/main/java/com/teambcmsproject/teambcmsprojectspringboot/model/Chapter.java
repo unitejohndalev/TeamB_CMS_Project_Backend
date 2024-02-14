@@ -18,76 +18,81 @@ import jakarta.persistence.OneToMany;
 public class Chapter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long chapter_id;
-    private String chapter_title;
-    private String chapter_date_created;
-    // january 30 2024
+    private Long chapter_id; // Unique identifier for the chapter
 
-    // february 8 2024 bug fixed can add chapter inside course
+    private String chapter_title; // Title of the chapter
+    private String chapter_date_created; // Date when the chapter was created
+
+    // January 30, 2024
+
+    // February 8, 2024: Bug fixed - can add chapter inside course
 
     // MANY TO ONE RELATIONSHIP BETWEEN COURSE AND CHAPTER
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id")
-    private Course course;
+    @JoinColumn(name = "course_id") // Defines the foreign key column in the Chapter table
+    private Course course; // Associated course for the chapter
 
     public Course getCourse() {
-        return this.course;
+        return this.course; // Getter for course
     }
-
+    
     public void setCourse(Course course) {
-        this.course = course;
+        this.course = course; // Setter for course
     }
 
-    // february 8 2024 bug fixed can add chapter inside cours
+    // February 8, 2024: Bug fixed - can add chapter inside course
 
-    //feb 12 2024
+    // February 12, 2024
 
-    //jpa relationship one to many between chapter and topic
-      @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Topic> topic;
+    // JPA relationship one to many between chapter and topic
+    @OneToMany(mappedBy = "chapter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Topic> topic; // List of topics associated with the chapter
 
     public List<Topic> getTopic() {
-        return this.topic;
+        return this.topic; // Getter for topic
     }
-
+    
     public void setTopic(List<Topic> topic) {
-        this.topic = topic;
+        this.topic = topic; // Setter for topic
     }
 
-    //feb 12 2024
+    // February 12, 2024
 
-    //feb 13 2024
-     // used in adding topic inside chapter
-     @JsonIgnore
-     public void addTopic(Topic topic) {
-         topic.setChapter(this); // Set the chapter for the topic
-         this.getTopic().add(topic); // Add the topic to the collection of topicss
-     }
-    //Feb 13 2024
+    // February 13, 2024
+    // Used in adding topic inside chapter
+    @JsonIgnore
+    public void addTopic(Topic topic) {
+        topic.setChapter(this); // Set the chapter for the topic
+        this.getTopic().add(topic); // Add the topic to the collection of topics
+    }
+    // February 13, 2024
 
     public Long getChapter_id() {
-        return this.chapter_id;
+        return this.chapter_id; // Getter for chapter_id
     }
-
+    
     public void setChapter_id(Long chapter_id) {
-        this.chapter_id = chapter_id;
+        this.chapter_id = chapter_id; // Setter for chapter_id
     }
-
+    
     public String getChapter_title() {
-        return this.chapter_title;
+        return this.chapter_title; // Getter for chapter_title
     }
-
+    
     public void setChapter_title(String chapter_title) {
-        this.chapter_title = chapter_title;
+        this.chapter_title = chapter_title; // Setter for chapter_title
     }
-
+    
     public String getChapter_date_created() {
-        return this.chapter_date_created;
+        return this.chapter_date_created; // Getter for chapter_date_created
     }
-
+    
     public void setChapter_date_created(String chapter_date_created) {
-        this.chapter_date_created = chapter_date_created;
+        this.chapter_date_created = chapter_date_created; // Setter for chapter_date_created
     }
-
+    
+    
+   
+    
 }
