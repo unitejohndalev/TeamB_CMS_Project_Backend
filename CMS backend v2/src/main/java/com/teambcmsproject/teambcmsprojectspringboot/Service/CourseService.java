@@ -1,22 +1,29 @@
 //January 22 2024 adding service class for organize code and function calling
 package com.teambcmsproject.teambcmsprojectspringboot.Service;
 
-import java.util.List; 
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.stereotype.Service; 
 import org.springframework.web.bind.annotation.PathVariable; 
-import org.springframework.web.bind.annotation.RequestBody; 
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.teambcmsproject.teambcmsprojectspringboot.exception.ChapterNotFoundException;
 import com.teambcmsproject.teambcmsprojectspringboot.exception.CourseNotFoundException; // Importing custom exception class
 import com.teambcmsproject.teambcmsprojectspringboot.exception.TopicNotFoundException; // Importing custom exception class
 import com.teambcmsproject.teambcmsprojectspringboot.model.Chapter; // Importing Chapter class
 import com.teambcmsproject.teambcmsprojectspringboot.model.Course; // Importing Course class
+import com.teambcmsproject.teambcmsprojectspringboot.repository.ChapterRepository;
 import com.teambcmsproject.teambcmsprojectspringboot.repository.CourseRepository; // Importing CourseRepository class
 
 @Service // Annotation to indicate this class as a service
 public class CourseService {
     @Autowired // Annotation for dependency injection of CourseRepository bean
     private CourseRepository courseRepository; // Declaration of CourseRepository bean
+
+    @Autowired
+    private ChapterRepository chapterRepository;
 
     // Function to retrieve all courses
     public List<Course> getAllCourse() { // Method signature to retrieve all courses
@@ -42,23 +49,46 @@ public class CourseService {
     
 
     // Function to add a chapter inside the course
-    public Course addChapterToCourse(Long course_id, Chapter chapter) { // Method signature to add a chapter inside the course
-        Course course = courseRepository.findById(course_id).orElse(null); // Retrieving course by ID
-        if (course != null) { // Checking if course exists
-            course.addChapter(chapter); // Adding chapter to course
-            return courseRepository.save(course); // Saving updated course
-        }
-        return null; // Returning null if course not found
+    public Course addChapterToCourse(Long course_id, Chapter chapter) {
+        Course course = courseRepository.findById(course_id)
+                                        .orElseThrow(() -> new CourseNotFoundException(course_id));
+        course.addChapter(chapter);
+        return courseRepository.save(course);
     }
+    
 
     // Function to delete a course by its ID
-    public String deleteCourse(@PathVariable Long course_id) { // Method signature to delete a course by its ID
-        if (!courseRepository.existsById(course_id)) { // Checking if course exists
-            throw new TopicNotFoundException(course_id); // Throwing TopicNotFoundException if course not found
+    // public String deleteCourse(@PathVariable Long course_id) { // Method signature to delete a course by its ID
+    //     if (!courseRepository.existsById(course_id)) { // Checking if course exists
+    //         throw new TopicNotFoundException(course_id); // Throwing TopicNotFoundException if course not found
+    //     }
+    //     courseRepository.deleteById(course_id); // Deleting course
+    //     return "Course with id " + course_id + " has been successfully deleted"; // Returning success message
+    // }
+     
+     // Function to delete a chapter by its ID
+    
+     
+//try
+    //delete
+    public void deleteChapterById(Long chapter_id) {
+        Optional<Chapter> chapterOptional = chapterRepository.findById(chapter_id);
+        if (chapterOptional.isPresent()) {
+            Chapter chapter = chapterOptional.get();
+            // Remove the chapter from its associated course
+            Course course = chapter.getCourse();
+            if (course != null) {
+                course.getChapter().remove(chapter);
+                courseRepository.save(course);
+            }
+            // Delete the chapter from the database
+            chapterRepository.deleteById(chapter_id);
+        } else {
+            throw new ChapterNotFoundException(chapter_id);
         }
-        courseRepository.deleteById(course_id); // Deleting course
-        return "Course with id " + course_id + " has been successfully deleted"; // Returning success message
     }
+
+//try
 
     // Function to update a course
     public Course updateCourse(@RequestBody Course newCourse, @PathVariable Long course_id) { // Method signature to update a course
