@@ -17,7 +17,7 @@ public class Topic {
     private Long topic_id; // Unique identifier for the topic
     private String topic_title; // Title of the topic
     private String topic_description; // Description of the topic
-    private String topic_file; // File associated with the topic
+    private byte[] topic_file; // File associated with the topic
     private String topic_link; // Link associated with the topic
 
     // January 24, 2024: JPA relationship successfully integrated many-to-many
@@ -64,11 +64,11 @@ public class Topic {
         this.topic_description = topic_description; // Setter for topic_description
     }
 
-    public String getTopic_file() {
+    public byte[] getTopic_file() {
         return this.topic_file; // Getter for topic_file
     }
 
-    public void setTopic_file(String topic_file) {
+    public void setTopic_file(byte[] topic_file) {
         this.topic_file = topic_file; // Setter for topic_file
     }
 

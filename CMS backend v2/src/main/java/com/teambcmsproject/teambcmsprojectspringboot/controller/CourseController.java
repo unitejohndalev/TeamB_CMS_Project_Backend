@@ -79,14 +79,9 @@ public class CourseController {
     // }
 
 //try
-    @DeleteMapping("/{course_id}/chapters/{chapter_id}")
-    public ResponseEntity<Chapter> deleteChapterById(@PathVariable Long course_id, @PathVariable Long chapter_id) {
-        try {
-            courseService.deleteChapterById(chapter_id);
-            return ResponseEntity.ok().build();
-        } catch (ChapterNotFoundException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @DeleteMapping("/{course_id}")
+    public String deleteCourse(@PathVariable Long course_id) { // Method signature to delete a chapter by its ID
+        return courseService.deleteCourse(course_id);
     }
     //try
     // January 22, 2024 modification for organize code and function calling

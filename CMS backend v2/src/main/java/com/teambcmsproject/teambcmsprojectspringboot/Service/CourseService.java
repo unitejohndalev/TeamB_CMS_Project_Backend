@@ -71,23 +71,13 @@ public class CourseService {
      
 //try
     //delete
-    public void deleteChapterById(Long chapter_id) {
-        Optional<Chapter> chapterOptional = chapterRepository.findById(chapter_id);
-        if (chapterOptional.isPresent()) {
-            Chapter chapter = chapterOptional.get();
-            // Remove the chapter from its associated course
-            Course course = chapter.getCourse();
-            if (course != null) {
-                course.getChapter().remove(chapter);
-                courseRepository.save(course);
-            }
-            // Delete the chapter from the database
-            chapterRepository.deleteById(chapter_id);
-        } else {
-            throw new ChapterNotFoundException(chapter_id);
+    public String deleteCourse(@PathVariable Long course_id) { // Method signature to delete a chapter by its ID
+        if (!chapterRepository.existsById(course_id)) { // Checking if chapter exists
+            throw new CourseNotFoundException(course_id); // Throwing ChapterNotFoundException if chapter not found
         }
+        chapterRepository.deleteById(course_id); // Deleting chapter
+        return "Course with id " + course_id + " has been successfully deleted"; // Returning success message
     }
-
 //try
 
     // Function to update a course
