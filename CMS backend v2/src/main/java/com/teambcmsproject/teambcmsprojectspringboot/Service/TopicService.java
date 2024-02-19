@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired; // Importing anno
 import org.springframework.stereotype.Service; // Importing annotation to indicate this class as a service
 import org.springframework.web.bind.annotation.PathVariable; // Importing annotation to indicate a method parameter is bound to a URI template variable
 import org.springframework.web.bind.annotation.RequestBody; // Importing annotation to indicate a method parameter should be bound to the body of the web request
+import org.springframework.web.multipart.MultipartFile;
 
 import com.teambcmsproject.teambcmsprojectspringboot.exception.TopicNotFoundException; // Importing custom exception class
 import com.teambcmsproject.teambcmsprojectspringboot.model.Topic; // Importing Topic class
@@ -28,15 +29,33 @@ public class TopicService {
     }
 
     // Function to save a new topic
-    public Topic saveTopic(Topic newTopic) { // Method signature to save a new topic
-        // Printing topic details
-        System.out.println(newTopic.getTopic_id());
-        System.out.println(newTopic.getTopic_title());
-        System.out.println(newTopic.getTopic_description());
-        System.out.println(newTopic.getTopic_file());
-        System.out.println(newTopic.getTopic_link());
-        return topicRepository.save(newTopic); // referring to save() method of TopicRepository interface
+    // public Topic saveTopic(Topic newTopic) { // Method signature to save a new topic
+    //     // Printing topic details
+    //     System.out.println(newTopic.getTopic_id());
+    //     System.out.println(newTopic.getTopic_title());
+    //     System.out.println(newTopic.getTopic_description());
+    //     System.out.println(newTopic.getTopic_file());
+    //     System.out.println(newTopic.getTopic_link());
+    //     return topicRepository.save(newTopic); // referring to save() method of TopicRepository interface
+    // }
+
+    //02/19/2024
+     public Topic saveTopicWithFile(String title, String description, MultipartFile file) {
+        // Handle file upload logic here and save the file
+        String fileName = file.getOriginalFilename();
+        // Save the file to your desired location, for example:
+        // file.transferTo(new File("path/to/upload/directory/" + fileName));
+
+        // Create a new Topic object and set its attributes
+        Topic newTopic = new Topic();
+        newTopic.setTopic_title(title);
+        newTopic.setTopic_description(description);
+        // Set other attributes as needed, e.g., file name or path
+
+        // Save the topic to the database
+        return topicRepository.save(newTopic);
     }
+        //02/19/2024
 
     // Function to update a topic
     public Topic updateTopic (@RequestBody Topic newTopic, @PathVariable Long topic_id){ // Method signature to update a topic

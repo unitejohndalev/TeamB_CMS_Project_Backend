@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.teambcmsproject.teambcmsprojectspringboot.Service.TopicService;
 import com.teambcmsproject.teambcmsprojectspringboot.model.Topic;
@@ -27,10 +29,19 @@ public class TopicController {
 
     // January 22, 2024 modification for organize code and function calling
 
-    @PostMapping() // Original user
-    Topic newTopic(@RequestBody Topic newTopic) { // Creates a new topic
-        return topicService.saveTopic(newTopic);
+    // @PostMapping() // Original user
+    // Topic newTopic(@RequestBody Topic newTopic) { // Creates a new topic
+    //     return topicService.saveTopic(newTopic);
+    // }
+
+    //02/19/24
+    @PostMapping("/api/topics")
+    public Topic newTopic(@RequestParam("file") MultipartFile file,
+                          @RequestParam("title") String title,
+                          @RequestParam("description") String description) {
+        return topicService.saveTopicWithFile(title, description, file);
     }
+        //02/19/24
 
     @GetMapping() // Original users
     List<Topic> getAllTopic() { // Retrieves all topics
