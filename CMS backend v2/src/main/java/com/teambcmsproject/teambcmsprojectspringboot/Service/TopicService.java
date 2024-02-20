@@ -1,8 +1,15 @@
 package com.teambcmsproject.teambcmsprojectspringboot.Service;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired; // Importing annotation for dependency injection
+
 import org.springframework.stereotype.Service; // Importing annotation to indicate this class as a service
 import org.springframework.web.bind.annotation.PathVariable; // Importing annotation to indicate a method parameter is bound to a URI template variable
 import org.springframework.web.bind.annotation.RequestBody; // Importing annotation to indicate a method parameter should be bound to the body of the web request
@@ -28,34 +35,36 @@ public class TopicService {
         .orElseThrow(() -> new TopicNotFoundException(topic_id)); // Handling TopicNotFoundException
     }
 
-    // Function to save a new topic
-    // public Topic saveTopic(Topic newTopic) { // Method signature to save a new topic
-    //     // Printing topic details
-    //     System.out.println(newTopic.getTopic_id());
-    //     System.out.println(newTopic.getTopic_title());
-    //     System.out.println(newTopic.getTopic_description());
-    //     System.out.println(newTopic.getTopic_file());
-    //     System.out.println(newTopic.getTopic_link());
-    //     return topicRepository.save(newTopic); // referring to save() method of TopicRepository interface
-    // }
-
     //02/19/2024
-     public Topic saveTopicWithFile(String title, String description, MultipartFile file) {
-        // Handle file upload logic here and save the file
-        String fileName = file.getOriginalFilename();
-        // Save the file to your desired location, for example:
-        // file.transferTo(new File("path/to/upload/directory/" + fileName));
 
-        // Create a new Topic object and set its attributes
-        Topic newTopic = new Topic();
-        newTopic.setTopic_title(title);
-        newTopic.setTopic_description(description);
-        // Set other attributes as needed, e.g., file name or path
-
-        // Save the topic to the database
-        return topicRepository.save(newTopic);
-    }
         //02/19/2024
+
+
+        //2-20-24        
+       public void saveTopicFile(byte[] bytes, String filenameWithoutPrefix) throws IOException {
+        // Specify the directory where you want to save the files
+        String directoryPath = "C:\\Users\\vsbu\\Documents";
+
+        // Create the directory if it doesn't exist
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        // Create a File object with the specified directory and filename
+        File file = new File(directoryPath + filenameWithoutPrefix);
+
+        // Write the byte array to the file
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+            fos.write(bytes);
+        }
+    }
+    public void saveTopic(Topic topic) {
+        topicRepository.save(topic);
+    }
+        
+        
+        //2-20-24
 
     // Function to update a topic
     public Topic updateTopic (@RequestBody Topic newTopic, @PathVariable Long topic_id){ // Method signature to update a topic
@@ -63,7 +72,7 @@ public class TopicService {
       .map(topic ->{ // Using map() to apply changes
         topic.setTopic_title(newTopic.getTopic_title()); // Updating topic title
         topic.setTopic_description(newTopic.getTopic_description()); // Updating topic description
-        topic.setTopic_file(newTopic.getTopic_file()); // Updating topic file
+        // topic.setTopic_file(newTopic.getTopic_file()); // Updating topic file
         topic.setTopic_link(newTopic.getTopic_link()); // Updating topic link
         return topicRepository.save(topic); // Saving updated topic
       }).orElseThrow(()-> new TopicNotFoundException(topic_id)); // Handling TopicNotFoundException
@@ -82,4 +91,8 @@ public class TopicService {
     public List<Topic> getTopicByChapterId(Long chapter_id){ // Method signature to retrieve topics by chapter ID
         return topicRepository.findByChapter_id(chapter_id); // referring to findByChapter_id() method of TopicRepository interface
     }
+
+  
+
+    
 }

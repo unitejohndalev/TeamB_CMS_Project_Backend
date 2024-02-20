@@ -1,9 +1,15 @@
 // January 17, 2024
 package com.teambcmsproject.teambcmsprojectspringboot.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,12 +41,41 @@ public class TopicController {
     // }
 
     //02/19/24
-    @PostMapping("/api/topics")
-    public Topic newTopic(@RequestParam("file") MultipartFile file,
-                          @RequestParam("title") String title,
-                          @RequestParam("description") String description) {
-        return topicService.saveTopicWithFile(title, description, file);
-    }
+
+        @PostMapping("/uploadTopic")
+        public ResponseEntity<String> uploadTopic(@RequestParam("topic_title") String topic_title,
+                                                  @RequestParam("topic_file") MultipartFile topic_file,
+                                                  @RequestParam("topic_description") String topic_description) {
+            if (topic_file.isEmpty()) {
+                return ResponseEntity.badRequest().body("File is empty");
+            }
+    
+            try {
+                byte[] bytes = topic_file.getBytes();
+                String originalFilename = topic_file.getOriginalFilename();
+                @SuppressWarnings("null")
+                String filenameWithoutPrefix = originalFilename.startsWith("PPT") ? originalFilename.substring(3) : originalFilename;
+    
+                // Save the file to a directory or cloud storage (you can use a service for this)
+                topicService.saveTopicFile(bytes, filenameWithoutPrefix);
+    
+                // Now, save the topic details to the database
+                Topic topic = new Topic();
+                topic.setTopic_title(topic_title);
+                topic.setTopic_file(bytes);
+                topic.setTopic_description(topic_description);
+    
+                topicService.saveTopic(topic);
+    
+                return ResponseEntity.ok("Topic saved successfully");
+            } catch (IOException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to save topic: " + e.getMessage());
+            }
+        }
+    
+    
+    
+
         //02/19/24
 
     @GetMapping() // Original users
