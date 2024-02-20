@@ -64,13 +64,7 @@ public class Topic {
         this.topic_description = topic_description; // Setter for topic_description
     }
 
-    public byte[] getTopic_file() {
-        return this.topic_file; // Getter for topic_file
-    }
-
-    public void setTopic_file(byte[] topic_file) {
-        this.topic_file = topic_file; // Setter for topic_file
-    }
+  
 
     public String getTopic_link() {
         return this.topic_link; // Getter for topic_link
@@ -79,6 +73,12 @@ public class Topic {
     public void setTopic_link(String topic_link) {
         this.topic_link = topic_link; // Setter for topic_link
     }
-}
+    public byte[] getTopic_file() {
+        return this.topic_file;
+    }
 
+    public void setTopic_file(byte[] topic_file) {
+        this.topic_file = topic_file;
+    }
+}
 // January 17, 2024

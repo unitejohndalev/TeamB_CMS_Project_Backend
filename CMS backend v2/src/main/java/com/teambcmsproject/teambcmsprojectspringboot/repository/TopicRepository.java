@@ -19,5 +19,6 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
    @Query("Select t FROM Topic t WHERE t.chapter.chapter_id = :chapter_id")
    List<Topic> findByChapter_id(@Param("chapter_id") Long chapter_id);
 
+   
 }
 // january 13 2024
