@@ -70,11 +70,19 @@ public class CourseController {
     }
     /* January 16, 2024 */
 
-    // API FOR DELETING COURSE BY CALLING COURSE ID
+    // API FOR DELETING COURSE BY CALLING COURSE ID @DeleteMapping("/{course_id}/chapters/{chapter_id}")
+    // public ResponseEntity<?> deleteChapterById(@PathVariable Long course_id, @PathVariable Long chapter_id) {
+    //     // Call service method to delete chapter
+    //     courseService.deleteChapterById(chapter_id);
+    //     return ResponseEntity.ok().build();
+    // }
+
+//try
     @DeleteMapping("/{course_id}")
-    String deleteCourse(@PathVariable Long course_id) { // Deletes course by its ID
+    public String deleteCourse(@PathVariable Long course_id) { // Method signature to delete a chapter by its ID
         return courseService.deleteCourse(course_id);
     }
+    //try
     // January 22, 2024 modification for organize code and function calling
 
     // API for adding chapter inside the course by calling course id
